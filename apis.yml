@@ -1,0 +1,25 @@
+aid: discgolfapi
+url: https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/apis.yml
+name: DiscGolfAPI
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+description: 'Free read-only API for disc golf course data — for developers, clubs, publishers, apps, and AI systems.'
+created: '2026-05-16'
+modified: '2026-05-16'
+specificationVersion: '0.19'
+tags:
+  - Disc Golf
+  - Sports
+  - Courses
+  - Open Data
+  - Recreation
+
+common:
+  - url: https://discgolfapi.com/
+    type: Website
+  - url: https://discgolfapi.com/docs/
+    type: Documentation
+  - url: https://discgolfapi.com/apis.json
+    type: APIsJSON
+url-source: https://discgolfapi.com/
+apis: []
