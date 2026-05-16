@@ -1,0 +1,281 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Disc Golf Course Data Workflow
+  description: >-
+    Unified disc golf course data capability for DiscGolfAPI. Combines course
+    listings and detail lookups, country and region coverage indexes, recent
+    update feeds, and the dataset manifest into a single workflow-oriented
+    interface for developers, clubs, publishers, mapping apps, directories,
+    and AI systems. The capability exposes a REST surface for application use
+    and an MCP surface for AI-assisted discovery and lookup. Public read
+    endpoints do not require an API key, and consumers must include visible
+    attribution where data is displayed.
+  tags:
+    - Disc Golf
+    - Courses
+    - Open Data
+    - Recreation
+    - Sports
+  created: '2026-05-16'
+  modified: '2026-05-16'
+capability:
+  consumes:
+    - type: http
+      namespace: discgolfapi
+      baseUri: https://io.discgolfapi.com/v1
+      description: DiscGolfAPI public REST API.
+      authentication:
+        type: none
+      resources:
+        - name: courses
+          path: /courses
+          description: Public course list with country, region, limit, and offset filters.
+          operations:
+            - name: list-courses
+              method: GET
+              description: List public disc golf course records, optionally filtered by country and region.
+              inputParameters:
+                - name: country
+                  in: query
+                  type: string
+                  required: false
+                  description: Country code filter (ISO 3166-1 alpha-2).
+                - name: region
+                  in: query
+                  type: string
+                  required: false
+                  description: Region, state, or subdivision code filter where supported.
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: Maximum number of records to return.
+                - name: offset
+                  in: query
+                  type: integer
+                  required: false
+                  description: Number of matching records to skip.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+        - name: course
+          path: /courses/{id}
+          description: Public course detail by stable public course ID.
+          operations:
+            - name: get-course
+              method: GET
+              description: Get a single course by stable public course ID.
+              inputParameters:
+                - name: id
+                  in: path
+                  type: string
+                  required: true
+                  description: Stable public course ID.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+        - name: countries
+          path: /countries
+          description: Country coverage index.
+          operations:
+            - name: list-countries
+              method: GET
+              description: List countries represented in the current public dataset.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+        - name: regions
+          path: /regions
+          description: Region coverage index.
+          operations:
+            - name: list-regions
+              method: GET
+              description: List regions, states, and subdivisions represented in the current public dataset.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+        - name: recent-updates
+          path: /updates/recent
+          description: Recent public dataset updates.
+          operations:
+            - name: list-recent-updates
+              method: GET
+              description: List recent course additions or changes in the public dataset.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+    - type: http
+      namespace: discgolfapi-meta
+      baseUri: https://io.discgolfapi.com
+      description: DiscGolfAPI metadata root.
+      authentication:
+        type: none
+      resources:
+        - name: manifest
+          path: /manifest.json
+          description: Current dataset manifest with publish version, generated timestamp, and content-addressable artefact metadata.
+          operations:
+            - name: get-manifest
+              method: GET
+              description: Get the current dataset manifest.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: disc-golf-courses-api
+      description: Unified REST surface for disc golf course discovery, lookup, and coverage indexes.
+      resources:
+        - path: /v1/courses
+          name: courses
+          description: Course search and listing.
+          operations:
+            - method: GET
+              name: list-courses
+              description: List disc golf courses, optionally filtered by country and region.
+              call: discgolfapi.list-courses
+              with:
+                country: rest.query.country
+                region: rest.query.region
+                limit: rest.query.limit
+                offset: rest.query.offset
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/courses/{id}
+          name: course
+          description: Course detail by stable public ID.
+          operations:
+            - method: GET
+              name: get-course
+              description: Get a single disc golf course by stable public ID.
+              call: discgolfapi.get-course
+              with:
+                id: rest.path.id
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/countries
+          name: countries
+          description: Country coverage index.
+          operations:
+            - method: GET
+              name: list-countries
+              description: List countries represented in the dataset with course counts.
+              call: discgolfapi.list-countries
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/regions
+          name: regions
+          description: Region coverage index.
+          operations:
+            - method: GET
+              name: list-regions
+              description: List regions and subdivisions represented in the dataset with course counts.
+              call: discgolfapi.list-regions
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/updates/recent
+          name: recent-updates
+          description: Recent course additions or changes.
+          operations:
+            - method: GET
+              name: list-recent-updates
+              description: List recent dataset updates so consumers can refresh local caches.
+              call: discgolfapi.list-recent-updates
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/manifest
+          name: manifest
+          description: Dataset manifest with publish version and artefact metadata.
+          operations:
+            - method: GET
+              name: get-manifest
+              description: Get the current dataset manifest.
+              call: discgolfapi-meta.get-manifest
+              outputParameters:
+                - type: object
+                  mapping: $.
+    - type: mcp
+      port: 9090
+      namespace: disc-golf-courses-mcp
+      transport: http
+      description: MCP server for AI-assisted disc golf course discovery, lookup, and coverage browsing.
+      tools:
+        - name: search-courses
+          description: Search disc golf courses by country, region, with pagination. Returns course records with location, status, and confidence fields.
+          hints:
+            readOnly: true
+            idempotent: true
+          call: discgolfapi.list-courses
+          with:
+            country: tools.country
+            region: tools.region
+            limit: tools.limit
+            offset: tools.offset
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: get-course
+          description: Retrieve a single disc golf course record by its stable public course ID (pattern crs_*).
+          hints:
+            readOnly: true
+            idempotent: true
+          call: discgolfapi.get-course
+          with:
+            id: tools.id
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: list-countries
+          description: List the countries represented in the public disc golf course dataset, with course counts.
+          hints:
+            readOnly: true
+            idempotent: true
+          call: discgolfapi.list-countries
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: list-regions
+          description: List the regions, states, and subdivisions represented in the public disc golf course dataset.
+          hints:
+            readOnly: true
+            idempotent: true
+          call: discgolfapi.list-regions
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: list-recent-updates
+          description: List recent course additions or changes so AI clients can refresh local caches and surface new courses.
+          hints:
+            readOnly: true
+            idempotent: true
+          call: discgolfapi.list-recent-updates
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: get-manifest
+          description: Get the current dataset manifest with publish version, generated timestamp, dataset counts, and content-addressable artefact metadata.
+          hints:
+            readOnly: true
+            idempotent: true
+          call: discgolfapi-meta.get-manifest
+          outputParameters:
+            - type: object
+              mapping: $.

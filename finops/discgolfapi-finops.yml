@@ -1,0 +1,153 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+provider: DiscGolfAPI
+providerId: discgolfapi
+publisherName: DiscGolfAPI
+serviceCategory: Open Data API
+created: '2026-05-16'
+modified: '2026-05-16'
+reconciled: false
+notes: >-
+  DiscGolfAPI is a free, read-only public service with no published billing
+  surface, invoicing, or chargeable units. The FinOps framework definition
+  below describes the cost-allocation surface for consumers (engineering
+  teams that integrate DiscGolfAPI) rather than a provider billing model.
+  No FOCUS-billed columns apply on the provider side; the chargeCategory
+  is "Usage" with a zero-rated PricingCategory ("Free"). Reconcile if and
+  when DiscGolfAPI introduces a paid tier.
+tags:
+  - Disc Golf
+  - Sports
+  - Courses
+  - Open Data
+  - Recreation
+  - FinOps
+  - FOCUS
+  - Free
+description: >-
+  FinOps framework definition for the DiscGolfAPI public API. The
+  provider's service is free and read-only, so this artefact primarily
+  models the cost-visibility and unit-economics surface for consumers
+  integrating DiscGolfAPI, aligned with the FinOps Foundation framework
+  and FOCUS data spec.
+principles:
+  - name: Visibility
+    description: >-
+      Make DiscGolfAPI consumption volume visible to engineering, product,
+      and operations teams so fair-use posture and reliance are understood
+      even when no fee is charged.
+  - name: Allocation
+    description: >-
+      Tag DiscGolfAPI calls with consumer team, environment, application,
+      and feature so the cost of replacement (should DiscGolfAPI become
+      unavailable) can be allocated and forecast.
+  - name: Optimization
+    description: >-
+      Continuously evaluate request patterns, caching, and bulk-artefact
+      downloads from the dataset manifest to reduce request volume and
+      respect fair use.
+  - name: Accountability
+    description: >-
+      Establish owners on the consuming side for monitoring DiscGolfAPI
+      availability and for upholding the licence attribution requirement
+      across all surfaces where data is displayed.
+domains:
+  - name: Understand Usage and Cost
+    capabilities:
+      - Data Ingestion
+      - Allocation
+      - Reporting and Analytics
+      - Anomaly Management
+  - name: Quantify Business Value
+    capabilities:
+      - Planning and Estimating
+      - Forecasting
+      - Benchmarking
+      - Unit Economics
+  - name: Optimize Usage and Cost
+    capabilities:
+      - Rate Optimization
+      - Workload Optimization
+      - Licensing and SaaS
+  - name: Manage the FinOps Practice
+    capabilities:
+      - FinOps Practice Operations
+      - Onboarding Workloads
+      - Intersecting Disciplines
+billingModel:
+  pricingCategory: Free
+  billingFrequency: NotApplicable
+  billingCurrency: USD
+  chargeCategories:
+    - Usage
+  chargeFrequency: NotApplicable
+focusColumns:
+  ServiceName: DiscGolfAPI
+  ServiceCategory: Open Data API
+  ProviderName: DiscGolfAPI
+  PublisherName: DiscGolfAPI
+  InvoiceIssuerName: DiscGolfAPI
+  PricingCategory: Free
+  PricingUnit: request
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  BilledCost: '0.00'
+  EffectiveCost: '0.00'
+  ListCost: '0.00'
+  ListUnitPrice: '0.00'
+meters:
+  - name: api_requests
+    description: Count of API requests issued to DiscGolfAPI endpoints.
+    unit: request
+    aggregation: sum
+    dimensions:
+      - endpoint
+      - status_code
+      - country_filter
+      - region_filter
+      - consumer
+  - name: data_egress
+    description: Bytes returned by DiscGolfAPI responses.
+    unit: GB
+    aggregation: sum
+    dimensions:
+      - endpoint
+      - consumer
+  - name: manifest_artefact_downloads
+    description: Count of bulk artefact downloads from the dataset manifest base URL.
+    unit: download
+    aggregation: sum
+    dimensions:
+      - artefact
+      - publish_version
+      - consumer
+apis:
+  - name: DiscGolfAPI REST API
+    baseURL: https://io.discgolfapi.com/v1
+    tags:
+      - Courses
+      - Countries
+      - Regions
+      - Updates
+      - Metadata
+    serviceName: DiscGolfAPI REST API
+    serviceCategory: Open Data API
+unitEconomics:
+  - name: Requests per Active Consumer
+    metric: api_requests / active_consumers
+    target: TBD
+  - name: Cache Hit Ratio
+    metric: cache_hits / (cache_hits + api_requests)
+    target: ">= 0.7"
+  - name: Egress per 1K Requests
+    metric: data_egress_gb / (api_requests / 1000)
+    target: TBD
+maintainers:
+  - FN: DiscGolfAPI
+    url: https://discgolfapi.com/contact/

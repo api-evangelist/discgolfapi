@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/discgolfapi/json-schema/discgolfapi-course-schema.json",
+  "title": "DiscGolfAPI Course",
+  "description": "JSON Schema for a public disc golf course record as published by DiscGolfAPI. Captures stable identity, location, operational and access status, confidence and verification signals, and the primary playing layout.",
+  "type": "object",
+  "required": [
+    "id",
+    "slug",
+    "name",
+    "lat",
+    "lon",
+    "country_code",
+    "region_code",
+    "locality",
+    "website",
+    "operator_name",
+    "holes",
+    "existence_status",
+    "operational_status",
+    "access_model",
+    "condition_status",
+    "listing_status",
+    "confidence_score",
+    "verification_strength",
+    "last_verified_at",
+    "updated_at",
+    "primary_layout",
+    "attributes"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^crs_[a-z0-9_]+$",
+      "description": "Stable public course identifier."
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-safe slug for the course."
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the course."
+    },
+    "lat": {
+      "type": ["number", "null"],
+      "minimum": -90,
+      "maximum": 90,
+      "description": "Latitude in decimal degrees. Null when coordinates are not available."
+    },
+    "lon": {
+      "type": ["number", "null"],
+      "minimum": -180,
+      "maximum": 180,
+      "description": "Longitude in decimal degrees. Null when coordinates are not available."
+    },
+    "country_code": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 2,
+      "description": "ISO 3166-1 alpha-2 country code."
+    },
+    "region_code": {
+      "type": ["string", "null"],
+      "description": "Region, state, or subdivision code where available."
+    },
+    "locality": {
+      "type": ["string", "null"],
+      "description": "City, town, or locality name where available."
+    },
+    "website": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "Official course or operator website where available."
+    },
+    "operator_name": {
+      "type": ["string", "null"],
+      "description": "Operating organisation or club name where available."
+    },
+    "holes": {
+      "type": ["integer", "null"],
+      "minimum": 1,
+      "description": "Known hole count. Null means unknown, not zero."
+    },
+    "existence_status": {
+      "type": "string",
+      "description": "Whether the course is believed to exist (e.g., existing, removed, proposed)."
+    },
+    "operational_status": {
+      "type": "string",
+      "description": "Whether the course is currently playable (e.g., open, closed, seasonal)."
+    },
+    "access_model": {
+      "type": "string",
+      "description": "Access model such as public, private, pay-to-play, or unknown."
+    },
+    "condition_status": {
+      "type": "string",
+      "description": "Reported condition of the course (e.g., maintained, neglected, unknown)."
+    },
+    "listing_status": {
+      "type": "string",
+      "description": "Public listing status (e.g., listed, unlisted)."
+    },
+    "confidence_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Numeric confidence signal for the record between 0 and 1."
+    },
+    "verification_strength": {
+      "type": "string",
+      "description": "Human-readable verification bucket such as low, medium, or high."
+    },
+    "last_verified_at": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Timestamp of the most recent verification, when available."
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of the most recent record update."
+    },
+    "primary_layout": {
+      "oneOf": [
+        { "$ref": "#/$defs/PrimaryLayout" },
+        { "type": "null" }
+      ],
+      "description": "Primary playing layout for the course where defined."
+    },
+    "attributes": {
+      "type": ["object", "null"],
+      "additionalProperties": true,
+      "description": "Open extension bag for forward-compatible course attributes."
+    }
+  },
+  "$defs": {
+    "PrimaryLayout": {
+      "type": "object",
+      "required": [
+        "id",
+        "slug",
+        "name",
+        "holes",
+        "par_total",
+        "length_meters",
+        "confidence_score",
+        "verification_strength",
+        "last_verified_at"
+      ],
+      "properties": {
+        "id": { "type": "string", "description": "Stable layout identifier." },
+        "slug": { "type": "string", "description": "URL-safe slug for the layout." },
+        "name": { "type": "string", "description": "Display name of the layout." },
+        "holes": { "type": ["integer", "null"], "minimum": 1, "description": "Hole count of the layout." },
+        "par_total": { "type": ["integer", "null"], "minimum": 1, "description": "Total par for the layout." },
+        "length_meters": { "type": ["number", "null"], "minimum": 0, "description": "Total layout length in meters." },
+        "confidence_score": { "type": "number", "minimum": 0, "maximum": 1, "description": "Confidence signal for the layout." },
+        "verification_strength": { "type": "string", "description": "Verification bucket for the layout." },
+        "last_verified_at": { "type": ["string", "null"], "format": "date-time", "description": "Layout verification timestamp." }
+      }
+    }
+  }
+}

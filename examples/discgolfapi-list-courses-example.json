@@ -1,0 +1,70 @@
+{
+  "operation": "List Courses",
+  "description": "Fetch the first page of public disc golf courses in Great Britain. Demonstrates the standard course-list envelope including attribution, licence, dataset meta, and the courses array.",
+  "request": {
+    "method": "GET",
+    "url": "https://io.discgolfapi.com/v1/courses?country=GB&limit=1&offset=0",
+    "headers": {
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "schema_version": "1.0.0",
+      "generated_at": "2026-05-03T18:02:34.285060Z",
+      "attribution": "Course data supplied by DiscGolfAPI.",
+      "attribution_required": true,
+      "license": "Free to use with attribution.",
+      "license_url": "https://discgolfapi.com/licence/",
+      "terms_url": "https://discgolfapi.com/terms/",
+      "no_warranty": "Data is provided as-is. Accuracy, completeness and availability are not guaranteed.",
+      "meta": {
+        "publish_version": "20260503T180234Z",
+        "release_scope": "all"
+      },
+      "count": 1,
+      "total": 30,
+      "offset": 0,
+      "courses": [
+        {
+          "id": "crs_ackers_adventure",
+          "slug": "ackers-adventure",
+          "name": "Ackers Adventure",
+          "lat": 52.4579339107501,
+          "lon": -1.85255245845531,
+          "country_code": "GB",
+          "region_code": "ENG",
+          "locality": null,
+          "website": "https://ackers-adventure.co.uk/",
+          "operator_name": null,
+          "holes": null,
+          "existence_status": "existing",
+          "operational_status": "open",
+          "access_model": "unknown",
+          "condition_status": "unknown",
+          "listing_status": "listed",
+          "confidence_score": 0.65,
+          "verification_strength": "medium",
+          "last_verified_at": "2026-04-27T22:40:53.197339Z",
+          "updated_at": "2026-04-29T20:35:03.752326Z",
+          "primary_layout": {
+            "id": "c30f319b-b111-4b94-afd1-77585659f6f2",
+            "slug": "main-layout",
+            "name": "Main Layout",
+            "holes": null,
+            "par_total": null,
+            "length_meters": null,
+            "confidence_score": 0.65,
+            "verification_strength": "medium",
+            "last_verified_at": "2026-04-27T22:40:53.197339Z"
+          },
+          "attributes": null
+        }
+      ]
+    }
+  }
+}

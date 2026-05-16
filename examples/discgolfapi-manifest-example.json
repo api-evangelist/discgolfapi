@@ -1,0 +1,52 @@
+{
+  "operation": "Get Dataset Manifest",
+  "description": "Fetch the current public dataset manifest. The manifest is published at the metadata root (https://io.discgolfapi.com/manifest.json) and contains contract and publish versions, dataset counts, and content-addressable artefact metadata for the current release.",
+  "request": {
+    "method": "GET",
+    "url": "https://io.discgolfapi.com/manifest.json",
+    "headers": {
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "contract_version": "1.0.0",
+      "publish_version": "20260511T210933Z",
+      "generated_at": "2026-05-11T21:09:33.677575Z",
+      "release_scope": "all",
+      "artefact_base_url": "https://io.discgolfapi.com/v1/20260511T210933Z/",
+      "counts": {
+        "courses": 6583,
+        "countries": 24,
+        "regions": 89,
+        "recent_updates": 100
+      },
+      "artefacts": {
+        "courses_basic": {
+          "path": "courses_basic.json",
+          "sha256": "ed168ca3adb0173f9c528c0c3ad1e4088194bbd582b09b7aeeea034da26ade9f",
+          "bytes": 5462534
+        },
+        "countries_index": {
+          "path": "countries_index.json",
+          "sha256": "1a4ecf6e99f1441d75a3eb1a7a51f7d06cd81b8573b6b084942656c360d078c5",
+          "bytes": 3064
+        },
+        "regions_index": {
+          "path": "regions_index.json",
+          "sha256": "9c97b9e6dddaedb93a90149758d977c8e311e94e5829fb0b60d822e26246fd22",
+          "bytes": 11704
+        },
+        "recent_updates": {
+          "path": "recent_updates.json",
+          "sha256": "80f9a58c486271ec0b690df7b030a34084087fa2bcfc61f28cddbaed431989c6",
+          "bytes": 19065
+        }
+      }
+    }
+  }
+}

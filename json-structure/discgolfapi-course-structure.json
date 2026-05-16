@@ -1,0 +1,49 @@
+{
+  "name": "DiscGolfAPI Course Structure",
+  "description": "Field-level structural documentation for a public DiscGolfAPI course record, intended as a human-readable companion to the JSON Schema. Captures identity, location, status, confidence, and the primary layout substructure.",
+  "created": "2026-05-16",
+  "modified": "2026-05-16",
+  "structure": {
+    "root": {
+      "type": "object",
+      "fields": [
+        { "name": "id", "type": "string (pattern crs_*)", "required": true, "description": "Stable public course identifier." },
+        { "name": "slug", "type": "string", "required": true, "description": "URL-safe slug for the course." },
+        { "name": "name", "type": "string", "required": true, "description": "Display name of the course." },
+        { "name": "lat", "type": "number|null", "required": true, "description": "Latitude in decimal degrees. Null when unknown." },
+        { "name": "lon", "type": "number|null", "required": true, "description": "Longitude in decimal degrees. Null when unknown." },
+        { "name": "country_code", "type": "string (ISO 3166-1 alpha-2)", "required": true, "description": "Country code." },
+        { "name": "region_code", "type": "string|null", "required": true, "description": "Region or subdivision code." },
+        { "name": "locality", "type": "string|null", "required": true, "description": "City, town, or locality." },
+        { "name": "website", "type": "string (uri)|null", "required": true, "description": "Official course or operator URL." },
+        { "name": "operator_name", "type": "string|null", "required": true, "description": "Operating organisation or club." },
+        { "name": "holes", "type": "integer|null", "required": true, "description": "Known hole count. Null means unknown, not zero." },
+        { "name": "existence_status", "type": "string", "required": true, "description": "Whether the course is believed to exist." },
+        { "name": "operational_status", "type": "string", "required": true, "description": "Whether the course is currently playable." },
+        { "name": "access_model", "type": "string", "required": true, "description": "Access model (public, private, pay-to-play, unknown)." },
+        { "name": "condition_status", "type": "string", "required": true, "description": "Reported course condition." },
+        { "name": "listing_status", "type": "string", "required": true, "description": "Public listing status." },
+        { "name": "confidence_score", "type": "number (0..1)", "required": true, "description": "Numeric confidence signal for the record." },
+        { "name": "verification_strength", "type": "string", "required": true, "description": "Verification bucket: low, medium, or high." },
+        { "name": "last_verified_at", "type": "string (date-time)|null", "required": true, "description": "Last verification timestamp." },
+        { "name": "updated_at", "type": "string (date-time)", "required": true, "description": "Last record update timestamp." },
+        { "name": "primary_layout", "type": "object|null (PrimaryLayout)", "required": true, "description": "Primary playing layout." },
+        { "name": "attributes", "type": "object|null", "required": true, "description": "Open extension bag for forward-compatible attributes." }
+      ]
+    },
+    "primary_layout": {
+      "type": "object",
+      "fields": [
+        { "name": "id", "type": "string", "required": true, "description": "Stable layout identifier." },
+        { "name": "slug", "type": "string", "required": true, "description": "URL-safe slug for the layout." },
+        { "name": "name", "type": "string", "required": true, "description": "Layout display name." },
+        { "name": "holes", "type": "integer|null", "required": true, "description": "Hole count for the layout." },
+        { "name": "par_total", "type": "integer|null", "required": true, "description": "Total par for the layout." },
+        { "name": "length_meters", "type": "number|null", "required": true, "description": "Total layout length in meters." },
+        { "name": "confidence_score", "type": "number (0..1)", "required": true, "description": "Layout confidence signal." },
+        { "name": "verification_strength", "type": "string", "required": true, "description": "Layout verification bucket." },
+        { "name": "last_verified_at", "type": "string (date-time)|null", "required": true, "description": "Layout verification timestamp." }
+      ]
+    }
+  }
+}

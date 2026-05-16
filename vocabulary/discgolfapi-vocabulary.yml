@@ -1,0 +1,328 @@
+vocabulary:
+  name: DiscGolfAPI Vocabulary
+  description: >-
+    Vocabulary for the DiscGolfAPI public disc golf course dataset. Captures
+    the domain terms used in the API responses — courses, layouts, coverage
+    indexes, dataset manifests — as well as the confidence, verification, and
+    attribution concepts that distinguish DiscGolfAPI from review and ranking
+    platforms.
+  created: '2026-05-16'
+  modified: '2026-05-16'
+  tags:
+    - Disc Golf
+    - Courses
+    - Open Data
+    - Recreation
+
+  terms:
+
+    - term: Course
+      definition: >-
+        A disc golf course — a defined playing area with one or more layouts
+        where the sport is played. The canonical resource published by
+        DiscGolfAPI. Identified by a stable public ID of the form crs_*.
+      tags:
+        - Core
+        - Resource
+
+    - term: Course ID
+      definition: >-
+        Stable public identifier for a course, matching the pattern
+        ^crs_[a-z0-9_]+$. Course IDs are stable across publishes and are the
+        canonical way to reference a record across systems.
+      tags:
+        - Core
+        - Identifier
+
+    - term: Slug
+      definition: >-
+        URL-safe textual identifier for a course or layout. Useful for human
+        readable URLs but the stable ID is the canonical reference.
+      tags:
+        - Identifier
+
+    - term: Layout
+      definition: >-
+        A specific configuration of holes played on a course, with a hole
+        count, par total, and length. A course can have multiple layouts. The
+        primary layout is the default configuration published per course.
+      tags:
+        - Core
+        - Resource
+
+    - term: Hole Count
+      definition: >-
+        The number of holes in a course or layout. Null indicates unknown,
+        not zero — a deliberate design choice so consumers can distinguish
+        missing data from a zero value.
+      tags:
+        - Course
+        - Measurement
+
+    - term: Par Total
+      definition: >-
+        The sum of par values across all holes in a layout. Indicates the
+        scoring baseline for the layout when known.
+      tags:
+        - Layout
+        - Measurement
+
+    - term: Length Meters
+      definition: >-
+        Total layout length in meters. Captured in SI units for
+        interoperability; consumer applications convert to feet or yards as
+        needed.
+      tags:
+        - Layout
+        - Measurement
+
+    - term: Country Code
+      definition: >-
+        ISO 3166-1 alpha-2 country code used for filtering and grouping
+        courses. Powers the country coverage index.
+      tags:
+        - Location
+        - Reference
+
+    - term: Region Code
+      definition: >-
+        Region, state, or subdivision code where supported. Powers the region
+        coverage index. Null when no subdivision data is available for a
+        course.
+      tags:
+        - Location
+        - Reference
+
+    - term: Locality
+      definition: >-
+        City, town, or locality name where available. Free-form display
+        text, not a coded reference.
+      tags:
+        - Location
+
+    - term: Existence Status
+      definition: >-
+        Whether a course is believed to exist, has been removed, or is
+        proposed. Distinguishes records that should not be displayed as
+        playable from those that are merely uncertain.
+      tags:
+        - Status
+
+    - term: Operational Status
+      definition: >-
+        Whether a course is currently playable — for example open, closed,
+        or seasonal. Independent of existence and access model.
+      tags:
+        - Status
+
+    - term: Access Model
+      definition: >-
+        How a course is accessed: public, private, pay-to-play, or unknown.
+        Helps consumers represent practical reachability separately from
+        operational status.
+      tags:
+        - Status
+        - Access
+
+    - term: Condition Status
+      definition: >-
+        Reported maintenance condition of a course, where known. Independent
+        of existence, operational, and access status.
+      tags:
+        - Status
+
+    - term: Listing Status
+      definition: >-
+        Whether a course is publicly listed (listed) or intentionally hidden
+        from public listings (unlisted). Affects whether consumers should
+        surface the record.
+      tags:
+        - Status
+        - Publication
+
+    - term: Confidence Score
+      definition: >-
+        Numeric signal between 0 and 1 indicating how confident DiscGolfAPI
+        is in the record. Allows consumers to weight or filter records
+        without applying their own heuristics.
+      tags:
+        - Confidence
+        - Quality
+
+    - term: Verification Strength
+      definition: >-
+        Human-readable verification bucket (low, medium, high) paired with
+        the confidence score. Intended for direct UI display.
+      tags:
+        - Confidence
+        - Quality
+
+    - term: Last Verified At
+      definition: >-
+        Timestamp of the most recent verification of a record. Lets
+        consumers compute record freshness independently of update events.
+      tags:
+        - Confidence
+        - Timestamp
+
+    - term: Updated At
+      definition: >-
+        Timestamp of the most recent change to a record. Combined with the
+        recent updates feed, supports incremental refresh by consumers.
+      tags:
+        - Timestamp
+
+    - term: Primary Layout
+      definition: >-
+        The default playing layout for a course. Other layouts may exist but
+        the primary layout is the one DiscGolfAPI publishes inline with the
+        course record.
+      tags:
+        - Layout
+
+    - term: Attributes
+      definition: >-
+        Open extension bag (free-form object) on a course record. Used to
+        evolve the schema forward in a non-breaking way; consumers should
+        tolerate unknown keys.
+      tags:
+        - Extensibility
+
+    - term: Common Envelope
+      definition: >-
+        Shared response wrapper carrying schema version, generation
+        timestamp, attribution, licence, terms, no-warranty notice, and
+        dataset meta. Every public response uses the common envelope so
+        downstream systems have a single integration shape.
+      tags:
+        - Response
+        - Contract
+
+    - term: Pagination Meta
+      definition: >-
+        Envelope fields count, total, and offset that describe the current
+        page of a list response. count is the returned page size; total is
+        the count before pagination.
+      tags:
+        - Response
+        - Pagination
+
+    - term: Recent Update
+      definition: >-
+        A record describing a recent course addition or change in the
+        public dataset. Consumers use the recent updates feed to refresh
+        local caches incrementally.
+      tags:
+        - Updates
+        - Feed
+
+    - term: Change Type
+      definition: >-
+        Category of a recent update such as added or updated. Lets
+        consumers decide whether to insert or refresh a local record.
+      tags:
+        - Updates
+
+    - term: Manifest
+      definition: >-
+        Dataset manifest published at the metadata root carrying contract
+        and publish versions, generated timestamp, dataset counts, and
+        content-addressable artefact metadata for the current release.
+      tags:
+        - Metadata
+        - Contract
+
+    - term: Contract Version
+      definition: >-
+        Semantic version of the public response contract. Changes signal
+        when consumers may need to update their integration logic.
+      tags:
+        - Contract
+        - Versioning
+
+    - term: Publish Version
+      definition: >-
+        Compact UTC publish stamp (YYYYMMDDTHHMMSSZ) identifying a specific
+        public release. Used to address content-addressable artefacts and
+        to anchor cache validation.
+      tags:
+        - Contract
+        - Versioning
+
+    - term: Release Scope
+      definition: >-
+        Label describing what a publish covers (e.g., all). Allows future
+        publishes to introduce partial scopes without changing the contract.
+      tags:
+        - Contract
+
+    - term: Artefact Base URL
+      definition: >-
+        The URL prefix under which a specific release's artefacts are
+        served. Combined with the artefact path it produces a stable
+        content-addressable download URL.
+      tags:
+        - Distribution
+
+    - term: Artefact
+      definition: >-
+        A published JSON artefact (courses_basic, countries_index,
+        regions_index, recent_updates) for a release, with path, SHA-256
+        digest, and byte size. Lets consumers bulk-download and verify
+        snapshots.
+      tags:
+        - Distribution
+
+    - term: Attribution
+      definition: >-
+        Required visible credit when displaying DiscGolfAPI data:
+        "Course data supplied by DiscGolfAPI." Where possible the credit
+        links to discgolfapi.com.
+      tags:
+        - Licence
+        - Reuse
+
+    - term: Attribution Required
+      definition: >-
+        Boolean envelope flag advertising that attribution must be visible
+        wherever the data is displayed. The flag is published with every
+        response to remove ambiguity.
+      tags:
+        - Licence
+        - Reuse
+
+    - term: Licence
+      definition: >-
+        DiscGolfAPI licence — free to use with attribution. Forbids
+        republishing the full dataset as a competing service, misrepresenting
+        the data, removing attribution, or using the data in a misleading
+        way.
+      tags:
+        - Licence
+
+    - term: Terms of Use
+      definition: >-
+        Public terms of use applying to the DiscGolfAPI website and data
+        feeds. Includes the no-warranty notice, limitation of liability,
+        third-party data acknowledgement, and access reservations.
+      tags:
+        - Terms
+
+    - term: No Warranty
+      definition: >-
+        Notice published with every response stating that data is provided
+        as-is and that accuracy, completeness, and availability are not
+        guaranteed. Consumers should verify course details independently
+        before relying on them.
+      tags:
+        - Terms
+
+    - term: Fair Use
+      definition: >-
+        Expectation that public endpoints are used for apps, websites,
+        maps, directories, and research; that responses are cached where
+        practical; and that the full dataset is not mirrored or
+        republished as a competing service.
+      tags:
+        - Reuse
+        - Policy

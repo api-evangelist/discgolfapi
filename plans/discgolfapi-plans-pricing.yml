@@ -1,0 +1,113 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: DiscGolfAPI
+providerId: discgolfapi
+created: '2026-05-16'
+modified: '2026-05-16'
+reconciled: false
+notes: >-
+  DiscGolfAPI is a free, read-only public API. Public endpoints do not require
+  an API key. The provider's published documentation does not currently list
+  named commercial plans, pricing, or per-plan quotas, so the structured
+  plans below capture the single Free tier explicitly and a Commercial enquiry
+  placeholder for the contact-driven commercial use channel referenced on the
+  licence page. Reconcile and replace placeholder values if and when
+  DiscGolfAPI publishes a commercial pricing surface.
+tags:
+  - Disc Golf
+  - Sports
+  - Courses
+  - Open Data
+  - Recreation
+description: >-
+  Machine-readable plans definition for DiscGolfAPI. Captures the public free
+  tier with attribution requirement and fair-use expectations, plus a
+  contact-driven commercial enquiry tier. Conforms to the API Commons Plans
+  schema.
+plans:
+  - id: discgolfapi-free
+    name: Free (Public Read-Only)
+    type: free
+    description: >-
+      Free public read-only access to DiscGolfAPI. No API key is required for
+      public endpoints. Use is governed by the DiscGolfAPI licence which
+      requires visible attribution ("Course data supplied by DiscGolfAPI.")
+      and forbids republishing the full dataset as a competing service.
+      Specific per-key or per-IP request rate and quota limits are not
+      published; consumers should observe fair use, cache responses where
+      practical, and respect 429 responses with backoff.
+    entries:
+      - label: API Requests
+        description: Public API request volume. No published quota; fair-use applies.
+        name: api_requests
+        type: quota
+        metric: requests
+        limit: -1
+        timeFrame: month
+        geo: global
+        domains:
+          - https://io.discgolfapi.com/v1
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Rate Limit
+        description: >-
+          Steady-state request rate. No published rate is currently
+          documented; clients should implement exponential backoff with
+          jitter when 429 Too Many Requests is returned.
+        name: rate_limit
+        type: rate
+        metric: requests_per_minute
+        limit: -1
+        timeFrame: minute
+        geo: global
+        domains:
+          - https://io.discgolfapi.com/v1
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Course List Endpoint
+      - name: Course Detail Endpoint
+      - name: Country Coverage Index
+      - name: Region Coverage Index
+      - name: Recent Updates Feed
+      - name: Dataset Manifest
+      - name: Public Documentation
+      - name: OpenAPI Specification
+      - name: APIs.json Discovery Document
+      - name: llms.txt Metadata
+      - name: Attribution Required
+      - name: No Warranty
+      - name: Fair Use Expected
+  - id: discgolfapi-commercial-enquiry
+    name: Commercial Enquiry
+    type: contact
+    description: >-
+      Contact-driven channel for commercial use, custom licensing, or
+      integration support. DiscGolfAPI's licence page invites enquiries via
+      the contact form for commercial use; the structured terms of any such
+      arrangement are negotiated directly with the provider and are not
+      published.
+    entries:
+      - label: Commercial Use
+        description: Custom-negotiated terms for commercial use.
+        name: commercial_use
+        type: contact
+        metric: contract
+        limit: -1
+        timeFrame: contract
+        geo: configurable
+        domains:
+          - https://io.discgolfapi.com/v1
+        unit: 1
+        price: TBD
+        userMultiplied: false
+    elements:
+      - name: Custom Licensing
+      - name: Integration Support
+      - name: Direct Contact Channel
+maintainers:
+  - FN: DiscGolfAPI
+    url: https://discgolfapi.com/contact/

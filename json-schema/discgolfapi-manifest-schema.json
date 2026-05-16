@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/discgolfapi/json-schema/discgolfapi-manifest-schema.json",
+  "title": "DiscGolfAPI Manifest",
+  "description": "JSON Schema for the DiscGolfAPI dataset manifest published at https://io.discgolfapi.com/manifest.json. The manifest carries contract and publish versions, generated timestamp, dataset counts, and content-addressable artefact metadata for the current public release.",
+  "type": "object",
+  "required": [
+    "contract_version",
+    "publish_version",
+    "generated_at",
+    "release_scope",
+    "artefact_base_url",
+    "counts",
+    "artefacts"
+  ],
+  "properties": {
+    "contract_version": {
+      "type": "string",
+      "description": "Public response contract version (semver)."
+    },
+    "publish_version": {
+      "type": "string",
+      "description": "Compact UTC publish stamp identifying this release."
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this release was generated, in ISO-8601."
+    },
+    "release_scope": {
+      "type": "string",
+      "description": "Release scope label (e.g., all)."
+    },
+    "artefact_base_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Base URL where this release's artefacts are served."
+    },
+    "counts": {
+      "type": "object",
+      "required": ["courses", "countries", "regions", "recent_updates"],
+      "properties": {
+        "courses": { "type": "integer", "minimum": 0, "description": "Number of public courses in this release." },
+        "countries": { "type": "integer", "minimum": 0, "description": "Number of countries represented." },
+        "regions": { "type": "integer", "minimum": 0, "description": "Number of regions, states, or subdivisions represented." },
+        "recent_updates": { "type": "integer", "minimum": 0, "description": "Number of recent update records." }
+      }
+    },
+    "artefacts": {
+      "type": "object",
+      "description": "Content-addressable artefact manifest keyed by logical artefact name.",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["path", "sha256", "bytes"],
+        "properties": {
+          "path": { "type": "string", "description": "Artefact path relative to the release base URL." },
+          "sha256": { "type": "string", "description": "SHA-256 hex digest of the artefact bytes." },
+          "bytes": { "type": "integer", "minimum": 0, "description": "Artefact size in bytes." }
+        }
+      }
+    }
+  }
+}

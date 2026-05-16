@@ -1,0 +1,87 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: DiscGolfAPI
+providerId: discgolfapi
+created: '2026-05-16'
+modified: '2026-05-16'
+reconciled: false
+notes: >-
+  DiscGolfAPI does not currently publish per-key or per-IP rate limits or
+  quotas. The OpenAPI specification documents a 429 Too Many Requests
+  response on every public read endpoint, and the public documentation
+  states that "429 if automated traffic is excessive." Fair use is the
+  expected governing model. The structured limits below capture the
+  documented response signalling and policy guidance; concrete numeric
+  limits are placeholders to be reconciled if and when the provider
+  publishes them.
+tags:
+  - Disc Golf
+  - Sports
+  - Courses
+  - Open Data
+  - Recreation
+  - Rate Limiting
+  - Fair Use
+description: >-
+  Machine-readable rate limit definitions for the DiscGolfAPI public API.
+  Captures documented response codes for throttling, the fair-use policy,
+  and the recovery semantics consumers should implement.
+headers:
+  retryAfter: Retry-After
+responseCodes:
+  throttled: 429
+  quotaExceeded: 429
+  serviceUnavailable: 503
+limits:
+  - tier: free
+    name: Public Free Tier Fair Use
+    scope: ip
+    metric: requests_per_minute
+    limit: -1
+    timeFrame: minute
+    applies:
+      - DiscGolfAPI REST API
+    notes: >-
+      No published numeric rate. -1 indicates "not specified by provider."
+      Consumers should treat 429 responses as authoritative and back off.
+  - tier: free
+    name: Public Free Tier Monthly Volume
+    scope: ip
+    metric: requests_per_month
+    limit: -1
+    timeFrame: month
+    applies:
+      - DiscGolfAPI REST API
+    notes: >-
+      No published monthly quota. -1 indicates "not specified by provider."
+policies:
+  - name: Fair Use
+    description: >-
+      Public endpoints are intended for apps, websites, maps, directories,
+      and research. Cache responses where practical, avoid unnecessary
+      repeated requests, and do not mirror or republish the full dataset
+      as a competing service.
+  - name: Backoff Strategy
+    description: >-
+      Clients receiving a 429 Too Many Requests response should implement
+      exponential backoff with jitter and honour any Retry-After header
+      when present.
+  - name: Excessive Automated Traffic
+    description: >-
+      The provider documents that 429 may be returned when automated
+      traffic is excessive. Automated clients should rate-limit themselves
+      proactively rather than relying on server-side throttling.
+  - name: Server Errors
+    description: >-
+      Transient 500 responses may occur. Clients should retry idempotent
+      reads with backoff and surface persistent failures to the operator.
+  - name: Caching
+    description: >-
+      Responses include a publish_version envelope field that supports
+      consumer-side cache validation. The dataset manifest publishes
+      content-addressable artefact metadata (SHA-256 + bytes) for
+      bulk-download cache strategies.
+maintainers:
+  - FN: DiscGolfAPI
+    url: https://discgolfapi.com/contact/

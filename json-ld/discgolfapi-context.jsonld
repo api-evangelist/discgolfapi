@@ -1,0 +1,97 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "dga": "https://api-evangelist.github.io/discgolfapi/vocab#",
+
+    "Course": {
+      "@id": "dga:Course",
+      "@type": "@id"
+    },
+    "Layout": {
+      "@id": "dga:Layout",
+      "@type": "@id"
+    },
+    "Country": {
+      "@id": "schema:Country",
+      "@type": "@id"
+    },
+    "Region": {
+      "@id": "schema:AdministrativeArea",
+      "@type": "@id"
+    },
+    "Update": {
+      "@id": "dga:Update",
+      "@type": "@id"
+    },
+    "Manifest": {
+      "@id": "dcat:Dataset",
+      "@type": "@id"
+    },
+
+    "id": { "@id": "schema:identifier" },
+    "slug": { "@id": "dga:slug" },
+    "name": { "@id": "schema:name" },
+    "description": { "@id": "schema:description" },
+    "url": { "@id": "schema:url", "@type": "@id" },
+    "website": { "@id": "schema:url", "@type": "@id" },
+
+    "lat": { "@id": "geo:lat", "@type": "xsd:decimal" },
+    "lon": { "@id": "geo:long", "@type": "xsd:decimal" },
+
+    "country_code": { "@id": "dga:countryCode" },
+    "region_code": { "@id": "dga:regionCode" },
+    "locality": { "@id": "schema:addressLocality" },
+
+    "operator_name": { "@id": "dga:operatorName" },
+    "holes": { "@id": "dga:holes", "@type": "xsd:integer" },
+    "par_total": { "@id": "dga:parTotal", "@type": "xsd:integer" },
+    "length_meters": { "@id": "dga:lengthMeters", "@type": "xsd:decimal" },
+
+    "existence_status": { "@id": "dga:existenceStatus" },
+    "operational_status": { "@id": "dga:operationalStatus" },
+    "access_model": { "@id": "dga:accessModel" },
+    "condition_status": { "@id": "dga:conditionStatus" },
+    "listing_status": { "@id": "dga:listingStatus" },
+
+    "confidence_score": { "@id": "dga:confidenceScore", "@type": "xsd:decimal" },
+    "verification_strength": { "@id": "dga:verificationStrength" },
+    "last_verified_at": { "@id": "dga:lastVerifiedAt", "@type": "xsd:dateTime" },
+    "updated_at": { "@id": "schema:dateModified", "@type": "xsd:dateTime" },
+    "generated_at": { "@id": "dct:issued", "@type": "xsd:dateTime" },
+
+    "primary_layout": { "@id": "dga:primaryLayout", "@type": "@id" },
+    "attributes": { "@id": "dga:attributes" },
+
+    "schema_version": { "@id": "dct:conformsTo" },
+    "publish_version": { "@id": "dga:publishVersion" },
+    "contract_version": { "@id": "dga:contractVersion" },
+    "release_scope": { "@id": "dga:releaseScope" },
+    "artefact_base_url": { "@id": "dcat:downloadURL", "@type": "@id" },
+
+    "attribution": { "@id": "dct:rightsHolder" },
+    "attribution_required": { "@id": "dga:attributionRequired", "@type": "xsd:boolean" },
+    "license": { "@id": "schema:license", "@type": "@id" },
+    "license_url": { "@id": "dct:license", "@type": "@id" },
+    "terms_url": { "@id": "dct:termsOfUse", "@type": "@id" },
+    "no_warranty": { "@id": "dga:noWarranty" },
+
+    "courses": { "@id": "dga:courses", "@container": "@list" },
+    "countries": { "@id": "dga:countries", "@container": "@list" },
+    "regions": { "@id": "dga:regions", "@container": "@list" },
+    "updates": { "@id": "dga:updates", "@container": "@list" },
+
+    "course_id": { "@id": "dga:courseId" },
+    "course_slug": { "@id": "dga:courseSlug" },
+    "course_name": { "@id": "schema:name" },
+    "change_type": { "@id": "dga:changeType" },
+    "course_count": { "@id": "dga:courseCount", "@type": "xsd:integer" },
+    "count": { "@id": "dga:count", "@type": "xsd:integer" },
+    "total": { "@id": "dga:total", "@type": "xsd:integer" },
+    "offset": { "@id": "dga:offset", "@type": "xsd:integer" }
+  }
+}
