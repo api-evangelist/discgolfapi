@@ -79,7 +79,7 @@ apis:
       - type: Coverage
         url: https://discgolfapi.com/coverage/
         x-type: Documentation
-      - type: Changelog
+      - type: ChangeLog
         url: https://discgolfapi.com/changelog/
         x-type: Changelog
       - type: Spectral Ruleset
@@ -106,7 +106,7 @@ apis:
       - type: Plans
         url: https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/plans/discgolfapi-plans-pricing.yml
         x-type: Plans
-      - type: Rate Limits
+      - type: RateLimits
         url: https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/rate-limits/discgolfapi-rate-limits.yml
         x-type: RateLimits
       - type: FinOps
@@ -139,7 +139,7 @@ common:
     url: https://discgolfapi.com/schema/
   - type: Coverage
     url: https://discgolfapi.com/coverage/
-  - type: Changelog
+  - type: ChangeLog
     url: https://discgolfapi.com/changelog/
   - type: Use Our Data
     url: https://discgolfapi.com/use-our-data/
