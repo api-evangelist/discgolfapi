@@ -1,0 +1,67 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: DiscGolfAPI — Countries
+  description: 'DiscGolfAPI — Countries. 1 operations. Lead operation: List Countries. Self-contained Naftiko capability covering
+    one Discgolfapi business surface.'
+  tags:
+  - Discgolfapi
+  - Countries
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DISCGOLFAPI_API_KEY: DISCGOLFAPI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: discgolfapi-countries
+    baseUri: https://io.discgolfapi.com/v1
+    description: DiscGolfAPI — Countries business capability. Self-contained, no shared references.
+    resources:
+    - name: countries
+      path: /countries
+      operations:
+      - name: listcountries
+        method: GET
+        description: List Countries
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: discgolfapi-countries-rest
+    port: 8080
+    description: REST adapter for DiscGolfAPI — Countries. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/countries
+      name: countries
+      description: REST surface for countries.
+      operations:
+      - method: GET
+        name: listcountries
+        description: List Countries
+        call: discgolfapi-countries.listcountries
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: discgolfapi-countries-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for DiscGolfAPI — Countries. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-countries
+      description: List Countries
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discgolfapi-countries.listcountries
+      outputParameters:
+      - type: object
+        mapping: $.

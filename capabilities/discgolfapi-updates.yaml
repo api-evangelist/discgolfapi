@@ -1,0 +1,67 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: DiscGolfAPI — Updates
+  description: 'DiscGolfAPI — Updates. 1 operations. Lead operation: List Recent Updates. Self-contained Naftiko capability
+    covering one Discgolfapi business surface.'
+  tags:
+  - Discgolfapi
+  - Updates
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DISCGOLFAPI_API_KEY: DISCGOLFAPI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: discgolfapi-updates
+    baseUri: https://io.discgolfapi.com/v1
+    description: DiscGolfAPI — Updates business capability. Self-contained, no shared references.
+    resources:
+    - name: updates-recent
+      path: /updates/recent
+      operations:
+      - name: listrecentupdates
+        method: GET
+        description: List Recent Updates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: discgolfapi-updates-rest
+    port: 8080
+    description: REST adapter for DiscGolfAPI — Updates. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/updates/recent
+      name: updates-recent
+      description: REST surface for updates-recent.
+      operations:
+      - method: GET
+        name: listrecentupdates
+        description: List Recent Updates
+        call: discgolfapi-updates.listrecentupdates
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: discgolfapi-updates-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for DiscGolfAPI — Updates. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-recent-updates
+      description: List Recent Updates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discgolfapi-updates.listrecentupdates
+      outputParameters:
+      - type: object
+        mapping: $.

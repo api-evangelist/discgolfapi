@@ -1,0 +1,67 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: DiscGolfAPI — Metadata
+  description: 'DiscGolfAPI — Metadata. 1 operations. Lead operation: Get Dataset Manifest. Self-contained Naftiko capability
+    covering one Discgolfapi business surface.'
+  tags:
+  - Discgolfapi
+  - Metadata
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DISCGOLFAPI_API_KEY: DISCGOLFAPI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: discgolfapi-metadata
+    baseUri: https://io.discgolfapi.com/v1
+    description: DiscGolfAPI — Metadata business capability. Self-contained, no shared references.
+    resources:
+    - name: manifest.json
+      path: /manifest.json
+      operations:
+      - name: getmanifest
+        method: GET
+        description: Get Dataset Manifest
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: discgolfapi-metadata-rest
+    port: 8080
+    description: REST adapter for DiscGolfAPI — Metadata. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/manifest-json
+      name: manifest-json
+      description: REST surface for manifest.json.
+      operations:
+      - method: GET
+        name: getmanifest
+        description: Get Dataset Manifest
+        call: discgolfapi-metadata.getmanifest
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: discgolfapi-metadata-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for DiscGolfAPI — Metadata. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-dataset-manifest
+      description: Get Dataset Manifest
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discgolfapi-metadata.getmanifest
+      outputParameters:
+      - type: object
+        mapping: $.

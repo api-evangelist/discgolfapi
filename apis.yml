@@ -1,149 +1,150 @@
 aid: discgolfapi
 name: DiscGolfAPI
-description: >-
-  DiscGolfAPI is a free, read-only public API that publishes structured JSON
-  data about disc golf courses for developers, clubs, publishers, apps, and AI
-  systems. It provides machine-readable course records with names, locations,
-  countries, regions, hole counts where known, coordinates where available,
-  operational and access fields, confidence and verification signals, update
-  timestamps, and attribution/licence metadata. DiscGolfAPI is infrastructure
-  and reference data — not a review site, rating platform, or social network.
+description: DiscGolfAPI is a free, read-only public API that publishes structured JSON data about disc golf courses for developers,
+  clubs, publishers, apps, and AI systems. It provides machine-readable course records with names, locations, countries, regions,
+  hole counts where known, coordinates where available, operational and access fields, confidence and verification signals,
+  update timestamps, and attribution/licence metadata. DiscGolfAPI is infrastructure and reference data — not a review site,
+  rating platform, or social network.
 type: Index
 image: https://discgolfapi.com/wp-content/themes/blocksy-child/assets/blue.png
 tags:
-  - Disc Golf
-  - Sports
-  - Courses
-  - Open Data
-  - Recreation
+- Disc Golf
+- Sports
+- Courses
+- Open Data
+- Recreation
 url: https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/apis.yml
 created: '2026-05-03'
-modified: '2026-05-16'
+modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: discgolfapi:discgolfapi-rest-api
-    name: DiscGolfAPI REST API
-    description: >-
-      Read-only structured disc golf course data for apps, maps, directories,
-      websites, and developer tools. Provides course listings filtered by
-      country and region with pagination, course detail by stable public ID,
-      country and region coverage indexes, recent update feed, and the public
-      dataset manifest with content-addressable artefacts. Public endpoints do
-      not require an API key. Use is subject to the DiscGolfAPI licence which
-      requires visible attribution.
-    humanURL: https://discgolfapi.com/
-    baseURL: https://io.discgolfapi.com/v1
-    image: https://discgolfapi.com/wp-content/themes/blocksy-child/assets/blue.png
-    tags:
-      - Courses
-      - Countries
-      - Regions
-      - Updates
-      - Metadata
-      - Disc Golf
-      - Open Data
-    properties:
-      - type: Documentation
-        url: https://discgolfapi.com/docs/
-        x-type: Documentation
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/openapi/discgolfapi-openapi.yml
-        x-type: OpenAPI
-      - type: OpenAPI
-        url: https://discgolfapi.com/openapi.json
-        x-type: OpenAPI
-      - type: APIsJSON
-        url: https://discgolfapi.com/apis.json
-        x-type: APIsJSON
-      - type: TermsOfService
-        url: https://discgolfapi.com/terms/
-        x-type: TermsOfService
-      - type: License
-        url: https://discgolfapi.com/licence/
-        x-type: License
-      - type: Contact
-        url: https://discgolfapi.com/contact/
-        x-type: Contact
-      - type: LLMsTxt
-        url: https://discgolfapi.com/llms.txt
-        x-type: LLMsTxt
-      - type: RobotsTxt
-        url: https://discgolfapi.com/robots.txt
-        x-type: RobotsTxt
-      - type: Manifest
-        url: https://io.discgolfapi.com/manifest.json
-        x-type: Manifest
-      - type: Schema
-        url: https://discgolfapi.com/schema/
-        x-type: Documentation
-      - type: Coverage
-        url: https://discgolfapi.com/coverage/
-        x-type: Documentation
-      - type: ChangeLog
-        url: https://discgolfapi.com/changelog/
-        x-type: Changelog
-      - type: Spectral Ruleset
-        url: https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/rules/discgolfapi-rules.yml
-        x-type: Rules
-      - type: Naftiko Capability
-        url: https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/capabilities/disc-golf-courses.yaml
-        x-type: Capability
-      - type: JSON Schema
-        url: https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/json-schema/discgolfapi-course-schema.json
-        x-type: JSONSchema
-      - type: JSON Schema
-        url: https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/json-schema/discgolfapi-manifest-schema.json
-        x-type: JSONSchema
-      - type: JSON Structure
-        url: https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/json-structure/discgolfapi-course-structure.json
-        x-type: JSONStructure
-      - type: JSON-LD Context
-        url: https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/json-ld/discgolfapi-context.jsonld
-        x-type: JSONLD
-      - type: Vocabulary
-        url: https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/vocabulary/discgolfapi-vocabulary.yml
-        x-type: Vocabulary
-      - type: Plans
-        url: https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/plans/discgolfapi-plans-pricing.yml
-        x-type: Plans
-      - type: RateLimits
-        url: https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/rate-limits/discgolfapi-rate-limits.yml
-        x-type: RateLimits
-      - type: FinOps
-        url: https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/finops/discgolfapi-finops.yml
-        x-type: FinOps
-    contact:
-      - FN: DiscGolfAPI
-        url: https://discgolfapi.com/contact/
-
-common:
-  - type: Website
-    url: https://discgolfapi.com/
+- aid: discgolfapi:discgolfapi-rest-api
+  name: DiscGolfAPI REST API
+  description: Read-only structured disc golf course data for apps, maps, directories, websites, and developer tools. Provides
+    course listings filtered by country and region with pagination, course detail by stable public ID, country and region
+    coverage indexes, recent update feed, and the public dataset manifest with content-addressable artefacts. Public endpoints
+    do not require an API key. Use is subject to the DiscGolfAPI licence which requires visible attribution.
+  humanURL: https://discgolfapi.com/
+  baseURL: https://io.discgolfapi.com/v1
+  image: https://discgolfapi.com/wp-content/themes/blocksy-child/assets/blue.png
+  tags:
+  - Courses
+  - Countries
+  - Regions
+  - Updates
+  - Metadata
+  - Disc Golf
+  - Open Data
+  properties:
   - type: Documentation
     url: https://discgolfapi.com/docs/
-  - type: APIsJSON
-    url: https://discgolfapi.com/apis.json
+    x-type: Documentation
+  - type: OpenAPI
+    url: https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/openapi/discgolfapi-openapi.yml
+    x-type: OpenAPI
   - type: OpenAPI
     url: https://discgolfapi.com/openapi.json
+    x-type: OpenAPI
+  - type: APIsJSON
+    url: https://discgolfapi.com/apis.json
+    x-type: APIsJSON
   - type: TermsOfService
     url: https://discgolfapi.com/terms/
+    x-type: TermsOfService
   - type: License
     url: https://discgolfapi.com/licence/
+    x-type: License
   - type: Contact
     url: https://discgolfapi.com/contact/
+    x-type: Contact
   - type: LLMsTxt
     url: https://discgolfapi.com/llms.txt
+    x-type: LLMsTxt
   - type: RobotsTxt
     url: https://discgolfapi.com/robots.txt
+    x-type: RobotsTxt
+  - type: Manifest
+    url: https://io.discgolfapi.com/manifest.json
+    x-type: Manifest
   - type: Schema
     url: https://discgolfapi.com/schema/
+    x-type: Documentation
   - type: Coverage
     url: https://discgolfapi.com/coverage/
+    x-type: Documentation
   - type: ChangeLog
     url: https://discgolfapi.com/changelog/
-  - type: Use Our Data
-    url: https://discgolfapi.com/use-our-data/
-
-maintainers:
+    x-type: Changelog
+  - type: Spectral Ruleset
+    url: https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/rules/discgolfapi-rules.yml
+    x-type: Rules
+  - type: Naftiko Capability
+    url: https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/capabilities/disc-golf-courses.yaml
+    x-type: Capability
+  - type: JSON Schema
+    url: https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/json-schema/discgolfapi-course-schema.json
+    x-type: JSONSchema
+  - type: JSON Schema
+    url: https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/json-schema/discgolfapi-manifest-schema.json
+    x-type: JSONSchema
+  - type: JSON Structure
+    url: https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/json-structure/discgolfapi-course-structure.json
+    x-type: JSONStructure
+  - type: JSON-LD Context
+    url: https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/json-ld/discgolfapi-context.jsonld
+    x-type: JSONLD
+  - type: Vocabulary
+    url: https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/vocabulary/discgolfapi-vocabulary.yml
+    x-type: Vocabulary
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/plans/discgolfapi-plans-pricing.yml
+    x-type: Plans
+  - type: RateLimits
+    url: https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/rate-limits/discgolfapi-rate-limits.yml
+    x-type: RateLimits
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/finops/discgolfapi-finops.yml
+    x-type: FinOps
+  - type: NaftikoCapability
+    url: capabilities/discgolfapi-countries.yaml
+  - type: NaftikoCapability
+    url: capabilities/discgolfapi-courses.yaml
+  - type: NaftikoCapability
+    url: capabilities/discgolfapi-metadata.yaml
+  - type: NaftikoCapability
+    url: capabilities/discgolfapi-regions.yaml
+  - type: NaftikoCapability
+    url: capabilities/discgolfapi-updates.yaml
+  contact:
   - FN: DiscGolfAPI
     url: https://discgolfapi.com/contact/
+common:
+- type: Website
+  url: https://discgolfapi.com/
+- type: Documentation
+  url: https://discgolfapi.com/docs/
+- type: APIsJSON
+  url: https://discgolfapi.com/apis.json
+- type: OpenAPI
+  url: https://discgolfapi.com/openapi.json
+- type: TermsOfService
+  url: https://discgolfapi.com/terms/
+- type: License
+  url: https://discgolfapi.com/licence/
+- type: Contact
+  url: https://discgolfapi.com/contact/
+- type: LLMsTxt
+  url: https://discgolfapi.com/llms.txt
+- type: RobotsTxt
+  url: https://discgolfapi.com/robots.txt
+- type: Schema
+  url: https://discgolfapi.com/schema/
+- type: Coverage
+  url: https://discgolfapi.com/coverage/
+- type: ChangeLog
+  url: https://discgolfapi.com/changelog/
+- type: Use Our Data
+  url: https://discgolfapi.com/use-our-data/
+maintainers:
+- FN: DiscGolfAPI
+  url: https://discgolfapi.com/contact/
