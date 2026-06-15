@@ -1,0 +1,150 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "DiscGolfAPI",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Courses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Courses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://io.discgolfapi.com/v1/courses",
+            "params": [
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Country code filter."
+              },
+              {
+                "name": "region",
+                "value": "",
+                "type": "query",
+                "description": "Region, state or subdivision code filter where supported."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return. Must be a positive integer."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of matching records to skip before returning the current page."
+              }
+            ]
+          },
+          "docs": "Returns public disc golf course records. Use country and region filters where available, and limit and offset for pagination."
+        },
+        {
+          "info": {
+            "name": "Get a Course by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://io.discgolfapi.com/v1/courses/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Stable public course ID."
+              }
+            ]
+          },
+          "docs": "Returns a single course by stable public course ID. The response uses the same envelope and courses array shape as the list endpoint."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Countries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Countries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://io.discgolfapi.com/v1/countries"
+          },
+          "docs": "Returns countries represented in the current public dataset."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Regions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Regions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://io.discgolfapi.com/v1/regions"
+          },
+          "docs": "Returns regions, states and subdivisions represented in the current public dataset where region codes are available."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Updates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Recent Updates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://io.discgolfapi.com/v1/updates/recent"
+          },
+          "docs": "Returns recent course additions or changes in the public dataset."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Dataset Manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://io.discgolfapi.com/v1/manifest.json"
+          },
+          "docs": "Returns the current public dataset manifest, including contract version, publish version, generated timestamp, dataset counts and published JSON artefact metadata."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

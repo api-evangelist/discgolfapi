@@ -1,0 +1,1154 @@
+{
+  "item": [
+    {
+      "id": "04ce6898-2207-4053-aaae-ac5d856464b0",
+      "name": "Courses",
+      "description": {
+        "content": "Course list and course detail endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e464eb13-66c5-44f2-904f-739640033d3e",
+          "name": "List Courses",
+          "request": {
+            "name": "List Courses",
+            "description": {
+              "content": "Returns public disc golf course records. Use country and region filters where available, and limit and offset for pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "courses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "Country code filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "region",
+                  "value": "<string>",
+                  "description": "Region, state or subdivision code filter where supported."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return. Must be a positive integer."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of matching records to skip before returning the current page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2026e7dc-fed9-4725-8489-3c215a183add",
+              "name": "A course list response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "courses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "GB"
+                    },
+                    {
+                      "key": "region",
+                      "value": "ENG"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"schema_version\": \"1.0.0\",\n  \"generated_at\": \"2026-05-03T18:02:34.285060Z\",\n  \"attribution\": \"Course data supplied by DiscGolfAPI.\",\n  \"attribution_required\": true,\n  \"license\": \"Free to use with attribution.\",\n  \"license_url\": \"https://discgolfapi.com/licence/\",\n  \"terms_url\": \"https://discgolfapi.com/terms/\",\n  \"no_warranty\": \"Data is provided as-is. Accuracy, completeness and availability are not guaranteed.\",\n  \"meta\": {\n    \"publish_version\": \"20260503T180234Z\",\n    \"release_scope\": \"all\"\n  },\n  \"count\": 1,\n  \"total\": 30,\n  \"offset\": 0,\n  \"courses\": [\n    {\n      \"id\": \"crs_ackers_adventure\",\n      \"slug\": \"ackers-adventure\",\n      \"name\": \"Ackers Adventure\",\n      \"lat\": 52.4579339107501,\n      \"lon\": -1.85255245845531,\n      \"country_code\": \"GB\",\n      \"region_code\": \"ENG\",\n      \"locality\": null,\n      \"website\": \"https://ackers-adventure.co.uk/\",\n      \"operator_name\": null,\n      \"holes\": null,\n      \"existence_status\": \"existing\",\n      \"operational_status\": \"open\",\n      \"access_model\": \"unknown\",\n      \"condition_status\": \"unknown\",\n      \"listing_status\": \"listed\",\n      \"confidence_score\": 0.65,\n      \"verification_strength\": \"medium\",\n      \"last_verified_at\": \"2026-04-27T22:40:53.197339Z\",\n      \"updated_at\": \"2026-04-29T20:35:03.752326Z\",\n      \"primary_layout\": {\n        \"id\": \"c30f319b-b111-4b94-afd1-77585659f6f2\",\n        \"slug\": \"main-layout\",\n        \"name\": \"Main Layout\",\n        \"holes\": null,\n        \"par_total\": null,\n        \"length_meters\": null,\n        \"confidence_score\": 0.65,\n        \"verification_strength\": \"medium\",\n        \"last_verified_at\": \"2026-04-27T22:40:53.197339Z\"\n      },\n      \"attributes\": null\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64e47412-9e68-4f09-a3e0-2f044d45adbb",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "courses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "GB"
+                    },
+                    {
+                      "key": "region",
+                      "value": "ENG"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac073901-a97c-42bd-8f63-327f597d1152",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "courses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "GB"
+                    },
+                    {
+                      "key": "region",
+                      "value": "ENG"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Course not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "23079c76-dde2-46b7-9911-7b61d8f2a1e2",
+              "name": "Too many requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "courses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "GB"
+                    },
+                    {
+                      "key": "region",
+                      "value": "ENG"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "509bd9bc-24e8-4f10-9150-1a13a17a6a2e",
+              "name": "Temporary server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "courses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "GB"
+                    },
+                    {
+                      "key": "region",
+                      "value": "ENG"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f75d726-7822-47aa-a3ce-db0b3259b0c5",
+          "name": "Get a Course by ID",
+          "request": {
+            "name": "Get a Course by ID",
+            "description": {
+              "content": "Returns a single course by stable public course ID. The response uses the same envelope and courses array shape as the list endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "courses",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Stable public course ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f4f1594c-e6bb-4b54-aeb0-0c848888e47f",
+              "name": "A single course response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "courses",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Stable public course ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"attribution\": \"string\",\n  \"attribution_required\": true,\n  \"count\": 8422,\n  \"courses\": [\n    {\n      \"id\": \"string\",\n      \"slug\": \"string\",\n      \"name\": \"string\",\n      \"lat\": 9848.11083617995,\n      \"lon\": 802.819461902361,\n      \"country_code\": \"string\",\n      \"region_code\": \"string\",\n      \"locality\": \"string\",\n      \"website\": \"http://CgftnMkLm.orawq.LWxSReqMe3ssW3vY8xn7zpR7wF5UXpAl6pZLXN\",\n      \"operator_name\": \"string\",\n      \"holes\": 6795,\n      \"existence_status\": \"string\",\n      \"operational_status\": \"string\",\n      \"access_model\": \"string\",\n      \"condition_status\": \"string\",\n      \"listing_status\": \"string\",\n      \"confidence_score\": 0.4011898281867067,\n      \"verification_strength\": \"string\",\n      \"last_verified_at\": \"1984-12-06T04:52:26.419Z\",\n      \"updated_at\": \"1984-03-27T00:42:33.061Z\",\n      \"primary_layout\": {\n        \"id\": \"string\",\n        \"slug\": \"string\",\n        \"name\": \"string\",\n        \"holes\": 105,\n        \"par_total\": 7350,\n        \"length_meters\": 4349.620273197598,\n        \"confidence_score\": 0.21436446516681962,\n        \"verification_strength\": \"string\",\n        \"last_verified_at\": \"1957-11-30T14:01:41.083Z\"\n      },\n      \"attributes\": {\n        \"key_0\": 8360,\n        \"key_1\": true\n      }\n    }\n  ],\n  \"generated_at\": \"1960-05-20T18:57:34.566Z\",\n  \"license\": \"string\",\n  \"license_url\": \"https://bWlbcUzBgUwECodQLruVXqVcJGp.iqLqx06YgFSRbE-\",\n  \"no_warranty\": \"string\",\n  \"schema_version\": \"string\",\n  \"terms_url\": \"http://KwolyExtNxBgYttepzhGtA.uqIDaNcWSFrbVNuP-znvGIRvoN6ueDbOimKyclBIgxenEsDo6QeVAEZyqHXt5CK.agX6R\",\n  \"meta\": {\n    \"publish_version\": \"string\",\n    \"release_scope\": \"string\"\n  },\n  \"total\": 8376,\n  \"offset\": 2519\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e22b5fff-d938-4d31-81ba-c0f881cbdb5a",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "courses",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Stable public course ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Course not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a685729-6955-4f63-8c5a-e18501eb78e8",
+              "name": "Too many requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "courses",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Stable public course ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d726b4c-aac3-42f2-88db-ef5987097642",
+              "name": "Temporary server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "courses",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Stable public course ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "0f467e38-826f-47d5-8a60-a2d72f565083",
+      "name": "Countries",
+      "description": {
+        "content": "Country coverage index.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cd11a4c7-a481-4c9d-8141-c0f8e6ab8f30",
+          "name": "List Countries",
+          "request": {
+            "name": "List Countries",
+            "description": {
+              "content": "Returns countries represented in the current public dataset.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "countries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8f145c69-5c8e-427e-b568-465a6cf4948a",
+              "name": "A country coverage response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "countries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"attribution\": \"string\",\n  \"attribution_required\": false,\n  \"countries\": [\n    {\n      \"country_code\": \"string\",\n      \"country_name\": \"string\",\n      \"course_count\": 3018,\n      \"updated_at\": \"1968-03-10T16:51:53.545Z\"\n    },\n    {\n      \"country_code\": \"string\",\n      \"country_name\": \"string\",\n      \"course_count\": 9852,\n      \"updated_at\": \"1978-09-14T03:40:21.325Z\"\n    }\n  ],\n  \"generated_at\": \"2019-08-31T05:11:42.191Z\",\n  \"license\": \"string\",\n  \"license_url\": \"https://PVOlxjSUdXMxFyBWwSxDraQIJGySLfD.kocdnYZgPDkk2FDNUH\",\n  \"no_warranty\": \"string\",\n  \"schema_version\": \"string\",\n  \"terms_url\": \"http://nBfwPlovXSYEEJcgnlWdnYJiFPyfsSzy.zsenzMWn4t5sq6cJtwNfLyKxKt5Y.ESW+AOS2Qr0c292\",\n  \"meta\": {\n    \"publish_version\": \"string\",\n    \"release_scope\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae5c8ce1-a70c-4835-84e8-4b871ebbad8a",
+              "name": "Too many requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "countries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b506bff6-89dc-490d-9df9-006a53744595",
+              "name": "Temporary server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "countries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "2df66a1e-49a1-49fe-9db1-877c60720cc5",
+      "name": "Regions",
+      "description": {
+        "content": "Region, state and subdivision coverage index.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3707e1e6-9826-47ba-836a-edb8e463e6d9",
+          "name": "List Regions",
+          "request": {
+            "name": "List Regions",
+            "description": {
+              "content": "Returns regions, states and subdivisions represented in the current public dataset where region codes are available.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "regions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "458d2382-b856-4947-a68d-8c2333d2aefc",
+              "name": "A region coverage response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "regions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"attribution\": \"string\",\n  \"attribution_required\": true,\n  \"generated_at\": \"1973-01-31T02:25:59.421Z\",\n  \"license\": \"string\",\n  \"license_url\": \"http://WdAY.zmsOTiBdWLrgDLt9zLy11iDtqwxdZ8P88Oonlgzrf7VYF8HLmya-\",\n  \"no_warranty\": \"string\",\n  \"regions\": [\n    {\n      \"country_code\": \"string\",\n      \"region_code\": \"string\",\n      \"region_name\": \"string\",\n      \"course_count\": 9858,\n      \"updated_at\": \"1980-11-24T04:25:01.363Z\"\n    },\n    {\n      \"country_code\": \"string\",\n      \"region_code\": \"string\",\n      \"region_name\": \"string\",\n      \"course_count\": 9106,\n      \"updated_at\": \"2013-08-18T22:59:55.399Z\"\n    }\n  ],\n  \"schema_version\": \"string\",\n  \"terms_url\": \"https://KjPPwByGqNHWYIVfetKtrciRCnkbUyBl.afdqETmM94nqA1m4aDVpTdnVyG3P+nvAvEGfySjSy7w9f,yzqI3F,SZw6F8vT\",\n  \"meta\": {\n    \"publish_version\": \"string\",\n    \"release_scope\": \"string\",\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7da6647d-57fe-4eaf-8bf3-57aadca8fe51",
+              "name": "Too many requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "regions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d661d0a-e9b1-47c1-8cf0-8e32b96c42b3",
+              "name": "Temporary server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "regions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "3ad51fe0-382c-4f25-b5b8-338914d6e72a",
+      "name": "Updates",
+      "description": {
+        "content": "Recent public data updates.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ac3bbbcf-5383-4350-904a-84744535c5ad",
+          "name": "List Recent Updates",
+          "request": {
+            "name": "List Recent Updates",
+            "description": {
+              "content": "Returns recent course additions or changes in the public dataset.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "updates",
+                "recent"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ae9f00ef-2343-4f4b-be76-51050938ef71",
+              "name": "A recent updates response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "updates",
+                    "recent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"attribution\": \"string\",\n  \"attribution_required\": true,\n  \"generated_at\": \"1977-01-04T00:33:49.894Z\",\n  \"license\": \"string\",\n  \"license_url\": \"http://N.cfrI.y5,eQPDIAgMc0TvqThz2BMI3nRvOqFdRD28oEEckRXiBx7PaQq\",\n  \"no_warranty\": \"string\",\n  \"schema_version\": \"string\",\n  \"terms_url\": \"http://ClkHdtRSOiyOtrf.eeqdXa-fd1G\",\n  \"updates\": [\n    {\n      \"course_id\": \"string\",\n      \"course_slug\": \"string\",\n      \"course_name\": \"string\",\n      \"change_type\": \"string\",\n      \"updated_at\": \"1980-04-12T13:40:40.622Z\"\n    },\n    {\n      \"course_id\": \"string\",\n      \"course_slug\": \"string\",\n      \"course_name\": \"string\",\n      \"change_type\": \"string\",\n      \"updated_at\": \"1984-05-24T16:32:58.233Z\"\n    }\n  ],\n  \"meta\": {\n    \"publish_version\": \"string\",\n    \"release_scope\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c1fb550-370d-419c-ab2a-ad081d39acc9",
+              "name": "Too many requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "updates",
+                    "recent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e92983b5-998a-426f-9189-ec0c5d5d9e6d",
+              "name": "Temporary server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "updates",
+                    "recent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "e9a9eead-a29a-4c68-badb-2ebf4178c490",
+      "name": "Metadata",
+      "description": {
+        "content": "Dataset manifest and publication metadata.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5ee5d601-83f1-4ba0-80a5-fdf4e52ad3db",
+          "name": "Get Dataset Manifest",
+          "request": {
+            "name": "Get Dataset Manifest",
+            "description": {
+              "content": "Returns the current public dataset manifest, including contract version, publish version, generated timestamp, dataset counts and published JSON artefact metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "manifest.json"
+              ],
+              "host": [
+                "io",
+                "discgolfapi",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6d743fde-0126-4908-8de0-1d637a1f5165",
+              "name": "The current dataset manifest.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "manifest.json"
+                  ],
+                  "host": [
+                    "io",
+                    "discgolfapi",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contract_version\": \"1.0.0\",\n  \"publish_version\": \"20260503T180234Z\",\n  \"generated_at\": \"2026-05-03T18:02:34.285060Z\",\n  \"release_scope\": \"all\",\n  \"artefact_base_url\": \"https://io.discgolfapi.com/v1/20260503T180234Z/\",\n  \"counts\": {\n    \"courses\": 727,\n    \"countries\": 23,\n    \"regions\": 31,\n    \"recent_updates\": 100\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42940cbf-dd51-4e31-bf1b-3d1592c9614a",
+              "name": "Temporary server error.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "manifest.json"
+                  ],
+                  "host": [
+                    "io",
+                    "discgolfapi",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://io.discgolfapi.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0b71dc52-2fe5-4b87-b66d-72922521bb2b",
+    "name": "DiscGolfAPI",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "DiscGolfAPI is a read-only API for structured disc golf course data. It provides stable course records, location fields, country and region indexes, update metadata, confidence signals and attribution information for developer projects, maps, directories, websites and AI systems.\n\nContact Support:\n Name: DiscGolfAPI",
+      "type": "text/plain"
+    }
+  }
+}
