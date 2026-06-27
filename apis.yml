@@ -60,7 +60,7 @@ apis:
       - type: Contact
         url: https://discgolfapi.com/contact/
         x-type: Contact
-      - type: LLMsTxt
+      - type: LlmsText
         url: https://discgolfapi.com/llms.txt
         x-type: LLMsTxt
       - type: RobotsTxt
@@ -81,19 +81,19 @@ apis:
       - type: Spectral Ruleset
         url: https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/rules/discgolfapi-rules.yml
         x-type: Rules
-      - type: JSON Schema
+      - type: JSONSchema
         url: >-
           https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/json-schema/discgolfapi-course-schema.json
         x-type: JSONSchema
-      - type: JSON Schema
+      - type: JSONSchema
         url: >-
           https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/json-schema/discgolfapi-manifest-schema.json
         x-type: JSONSchema
-      - type: JSON Structure
+      - type: JSONStructure
         url: >-
           https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/json-structure/discgolfapi-course-structure.json
         x-type: JSONStructure
-      - type: JSON-LD Context
+      - type: JSONLDContext
         url: >-
           https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/json-ld/discgolfapi-context.jsonld
         x-type: JSONLD
@@ -130,7 +130,7 @@ common:
     url: https://discgolfapi.com/licence/
   - type: Contact
     url: https://discgolfapi.com/contact/
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://discgolfapi.com/llms.txt
   - type: RobotsTxt
     url: https://discgolfapi.com/robots.txt
