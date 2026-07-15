@@ -116,6 +116,8 @@ apis:
       - FN: DiscGolfAPI
         url: https://discgolfapi.com/contact/
 common:
+  - type: AgenticAccess
+    url: agentic-access/discgolfapi-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/discgolfapi-vulnerability-disclosure.yml
   - type: DomainSecurity
