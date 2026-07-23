@@ -1,0 +1,436 @@
+openapi: 3.1.0
+info:
+  title: DiscGolf Countries Courses API
+  version: 1.0.0
+  description: DiscGolfAPI is a read-only API for structured disc golf course data. It provides stable course records, location fields, country and region indexes, update metadata, confidence signals and attribution information for developer projects, maps, directories, websites and AI systems.
+  termsOfService: https://discgolfapi.com/terms/
+  contact:
+    name: DiscGolfAPI
+    url: https://discgolfapi.com/contact/
+  license:
+    name: Free to use with attribution
+    url: https://discgolfapi.com/licence/
+servers:
+- url: https://io.discgolfapi.com/v1
+  description: Production API
+tags:
+- name: Courses
+  description: Course list and course detail endpoints.
+paths:
+  /courses:
+    get:
+      tags:
+      - Courses
+      summary: List Courses
+      description: Returns public disc golf course records. Use country and region filters where available, and limit and offset for pagination.
+      operationId: listCourses
+      parameters:
+      - $ref: '#/components/parameters/Country'
+      - $ref: '#/components/parameters/Region'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Offset'
+      responses:
+        '200':
+          description: A course list response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CourseListResponse'
+              examples:
+                gbList:
+                  summary: One Great Britain course
+                  value:
+                    schema_version: 1.0.0
+                    generated_at: '2026-05-03T18:02:34.285060Z'
+                    attribution: Course data supplied by DiscGolfAPI.
+                    attribution_required: true
+                    license: Free to use with attribution.
+                    license_url: https://discgolfapi.com/licence/
+                    terms_url: https://discgolfapi.com/terms/
+                    no_warranty: Data is provided as-is. Accuracy, completeness and availability are not guaranteed.
+                    meta:
+                      publish_version: 20260503T180234Z
+                      release_scope: all
+                    count: 1
+                    total: 30
+                    offset: 0
+                    courses:
+                    - id: crs_ackers_adventure
+                      slug: ackers-adventure
+                      name: Ackers Adventure
+                      lat: 52.4579339107501
+                      lon: -1.85255245845531
+                      country_code: GB
+                      region_code: ENG
+                      locality: null
+                      website: https://ackers-adventure.co.uk/
+                      operator_name: null
+                      holes: null
+                      existence_status: existing
+                      operational_status: open
+                      access_model: unknown
+                      condition_status: unknown
+                      listing_status: listed
+                      confidence_score: 0.65
+                      verification_strength: medium
+                      last_verified_at: '2026-04-27T22:40:53.197339Z'
+                      updated_at: '2026-04-29T20:35:03.752326Z'
+                      primary_layout:
+                        id: c30f319b-b111-4b94-afd1-77585659f6f2
+                        slug: main-layout
+                        name: Main Layout
+                        holes: null
+                        par_total: null
+                        length_meters: null
+                        confidence_score: 0.65
+                        verification_strength: medium
+                        last_verified_at: '2026-04-27T22:40:53.197339Z'
+                      attributes: null
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /courses/{id}:
+    get:
+      tags:
+      - Courses
+      summary: Get a Course by ID
+      description: Returns a single course by stable public course ID. The response uses the same envelope and courses array shape as the list endpoint.
+      operationId: getCourse
+      parameters:
+      - $ref: '#/components/parameters/CourseId'
+      responses:
+        '200':
+          description: A single course response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CourseResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/ServerError'
+components:
+  parameters:
+    Country:
+      name: country
+      in: query
+      required: false
+      description: Country code filter.
+      schema:
+        type: string
+        minLength: 2
+        maxLength: 2
+        examples:
+        - GB
+    Offset:
+      name: offset
+      in: query
+      required: false
+      description: Number of matching records to skip before returning the current page.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+        examples:
+        - 0
+    Region:
+      name: region
+      in: query
+      required: false
+      description: Region, state or subdivision code filter where supported.
+      schema:
+        type: string
+        examples:
+        - ENG
+    CourseId:
+      name: id
+      in: path
+      required: true
+      description: Stable public course ID.
+      schema:
+        type: string
+        pattern: ^crs_[a-z0-9_]+$
+        examples:
+        - crs_ackers_adventure
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of records to return. Must be a positive integer.
+      schema:
+        type: integer
+        minimum: 1
+        examples:
+        - 5
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+      - error
+      additionalProperties: true
+    PaginationMeta:
+      type: object
+      properties:
+        count:
+          type: integer
+          minimum: 0
+        total:
+          type: integer
+          minimum: 0
+        offset:
+          type: integer
+          minimum: 0
+      required:
+      - count
+    CommonEnvelope:
+      type: object
+      properties:
+        schema_version:
+          type: string
+        generated_at:
+          type: string
+          format: date-time
+        attribution:
+          type: string
+        attribution_required:
+          type: boolean
+        license:
+          type: string
+        license_url:
+          type: string
+          format: uri
+        terms_url:
+          type: string
+          format: uri
+        no_warranty:
+          type: string
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+      required:
+      - schema_version
+      - generated_at
+      - attribution
+      - attribution_required
+      - license
+      - license_url
+      - terms_url
+      - no_warranty
+    PrimaryLayout:
+      type: object
+      properties:
+        id:
+          type: string
+        slug:
+          type: string
+        name:
+          type: string
+        holes:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+        par_total:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+        length_meters:
+          type:
+          - number
+          - 'null'
+          minimum: 0
+        confidence_score:
+          type: number
+          minimum: 0
+          maximum: 1
+        verification_strength:
+          type: string
+        last_verified_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      required:
+      - id
+      - slug
+      - name
+      - holes
+      - par_total
+      - length_meters
+      - confidence_score
+      - verification_strength
+      - last_verified_at
+    CourseListResponse:
+      allOf:
+      - $ref: '#/components/schemas/CommonEnvelope'
+      - $ref: '#/components/schemas/PaginationMeta'
+      - type: object
+        properties:
+          courses:
+            type: array
+            items:
+              $ref: '#/components/schemas/Course'
+        required:
+        - courses
+    CourseResponse:
+      allOf:
+      - $ref: '#/components/schemas/CommonEnvelope'
+      - $ref: '#/components/schemas/PaginationMeta'
+      - type: object
+        properties:
+          courses:
+            type: array
+            minItems: 1
+            maxItems: 1
+            items:
+              $ref: '#/components/schemas/Course'
+        required:
+        - courses
+    ResponseMeta:
+      type: object
+      properties:
+        publish_version:
+          type: string
+        release_scope:
+          type: string
+      additionalProperties: true
+    Course:
+      type: object
+      properties:
+        id:
+          type: string
+        slug:
+          type: string
+        name:
+          type: string
+        lat:
+          type:
+          - number
+          - 'null'
+        lon:
+          type:
+          - number
+          - 'null'
+        country_code:
+          type: string
+        region_code:
+          type:
+          - string
+          - 'null'
+        locality:
+          type:
+          - string
+          - 'null'
+        website:
+          type:
+          - string
+          - 'null'
+          format: uri
+        operator_name:
+          type:
+          - string
+          - 'null'
+        holes:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          description: Known hole count. Null means unknown, not zero.
+        existence_status:
+          type: string
+        operational_status:
+          type: string
+        access_model:
+          type: string
+        condition_status:
+          type: string
+        listing_status:
+          type: string
+        confidence_score:
+          type: number
+          minimum: 0
+          maximum: 1
+        verification_strength:
+          type: string
+        last_verified_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        primary_layout:
+          anyOf:
+          - $ref: '#/components/schemas/PrimaryLayout'
+          - type: 'null'
+        attributes:
+          type:
+          - object
+          - 'null'
+          additionalProperties: true
+      required:
+      - id
+      - slug
+      - name
+      - lat
+      - lon
+      - country_code
+      - region_code
+      - locality
+      - website
+      - operator_name
+      - holes
+      - existence_status
+      - operational_status
+      - access_model
+      - condition_status
+      - listing_status
+      - confidence_score
+      - verification_strength
+      - last_verified_at
+      - updated_at
+      - primary_layout
+      - attributes
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            courseNotFound:
+              value:
+                error: Course not found
+    BadRequest:
+      description: Invalid request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    ServerError:
+      description: Temporary server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: Too many requests.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+externalDocs:
+  description: DiscGolfAPI documentation
+  url: https://discgolfapi.com/docs/

@@ -1,0 +1,131 @@
+openapi: 3.1.0
+info:
+  title: DiscGolf Countries Metadata API
+  version: 1.0.0
+  description: DiscGolfAPI is a read-only API for structured disc golf course data. It provides stable course records, location fields, country and region indexes, update metadata, confidence signals and attribution information for developer projects, maps, directories, websites and AI systems.
+  termsOfService: https://discgolfapi.com/terms/
+  contact:
+    name: DiscGolfAPI
+    url: https://discgolfapi.com/contact/
+  license:
+    name: Free to use with attribution
+    url: https://discgolfapi.com/licence/
+servers:
+- url: https://io.discgolfapi.com/v1
+  description: Production API
+tags:
+- name: Metadata
+  description: Dataset manifest and publication metadata.
+paths:
+  /manifest.json:
+    get:
+      tags:
+      - Metadata
+      summary: Get Dataset Manifest
+      description: Returns the current public dataset manifest, including contract version, publish version, generated timestamp, dataset counts and published JSON artefact metadata.
+      operationId: getManifest
+      servers:
+      - url: https://io.discgolfapi.com
+        description: Production API metadata root
+      responses:
+        '200':
+          description: The current dataset manifest.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Manifest'
+              examples:
+                manifest:
+                  summary: Manifest excerpt
+                  value:
+                    contract_version: 1.0.0
+                    publish_version: 20260503T180234Z
+                    generated_at: '2026-05-03T18:02:34.285060Z'
+                    release_scope: all
+                    artefact_base_url: https://io.discgolfapi.com/v1/20260503T180234Z/
+                    counts:
+                      courses: 727
+                      countries: 23
+                      regions: 31
+                      recent_updates: 100
+        '500':
+          $ref: '#/components/responses/ServerError'
+components:
+  schemas:
+    Manifest:
+      type: object
+      properties:
+        contract_version:
+          type: string
+        publish_version:
+          type: string
+        generated_at:
+          type: string
+          format: date-time
+        release_scope:
+          type: string
+        artefact_base_url:
+          type: string
+          format: uri
+        counts:
+          type: object
+          properties:
+            courses:
+              type: integer
+              minimum: 0
+            countries:
+              type: integer
+              minimum: 0
+            regions:
+              type: integer
+              minimum: 0
+            recent_updates:
+              type: integer
+              minimum: 0
+          required:
+          - courses
+          - countries
+          - regions
+          - recent_updates
+        artefacts:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              path:
+                type: string
+              sha256:
+                type: string
+              bytes:
+                type: integer
+                minimum: 0
+            required:
+            - path
+            - sha256
+            - bytes
+      required:
+      - contract_version
+      - publish_version
+      - generated_at
+      - release_scope
+      - artefact_base_url
+      - counts
+      - artefacts
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+      - error
+      additionalProperties: true
+  responses:
+    ServerError:
+      description: Temporary server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+externalDocs:
+  description: DiscGolfAPI documentation
+  url: https://discgolfapi.com/docs/

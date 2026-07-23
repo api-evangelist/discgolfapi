@@ -1,0 +1,133 @@
+openapi: 3.1.0
+info:
+  title: DiscGolf Countries API
+  version: 1.0.0
+  description: DiscGolfAPI is a read-only API for structured disc golf course data. It provides stable course records, location fields, country and region indexes, update metadata, confidence signals and attribution information for developer projects, maps, directories, websites and AI systems.
+  termsOfService: https://discgolfapi.com/terms/
+  contact:
+    name: DiscGolfAPI
+    url: https://discgolfapi.com/contact/
+  license:
+    name: Free to use with attribution
+    url: https://discgolfapi.com/licence/
+servers:
+- url: https://io.discgolfapi.com/v1
+  description: Production API
+tags:
+- name: Countries
+  description: Country coverage index.
+paths:
+  /countries:
+    get:
+      tags:
+      - Countries
+      summary: List Countries
+      description: Returns countries represented in the current public dataset.
+      operationId: listCountries
+      responses:
+        '200':
+          description: A country coverage response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountriesResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/ServerError'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+      - error
+      additionalProperties: true
+    CommonEnvelope:
+      type: object
+      properties:
+        schema_version:
+          type: string
+        generated_at:
+          type: string
+          format: date-time
+        attribution:
+          type: string
+        attribution_required:
+          type: boolean
+        license:
+          type: string
+        license_url:
+          type: string
+          format: uri
+        terms_url:
+          type: string
+          format: uri
+        no_warranty:
+          type: string
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+      required:
+      - schema_version
+      - generated_at
+      - attribution
+      - attribution_required
+      - license
+      - license_url
+      - terms_url
+      - no_warranty
+    Country:
+      type: object
+      properties:
+        country_code:
+          type: string
+        country_name:
+          type: string
+        course_count:
+          type: integer
+          minimum: 0
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - country_code
+      - country_name
+      - course_count
+      - updated_at
+    CountriesResponse:
+      allOf:
+      - $ref: '#/components/schemas/CommonEnvelope'
+      - type: object
+        properties:
+          countries:
+            type: array
+            items:
+              $ref: '#/components/schemas/Country'
+        required:
+        - countries
+    ResponseMeta:
+      type: object
+      properties:
+        publish_version:
+          type: string
+        release_scope:
+          type: string
+      additionalProperties: true
+  responses:
+    ServerError:
+      description: Temporary server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: Too many requests.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+externalDocs:
+  description: DiscGolfAPI documentation
+  url: https://discgolfapi.com/docs/
