@@ -1,0 +1,22 @@
+{
+  "provider": "discgolfapi",
+  "sources": [
+    "discgolfapi-countries-api-openapi.yml",
+    "discgolfapi-courses-api-openapi.yml",
+    "discgolfapi-metadata-api-openapi.yml",
+    "discgolfapi-regions-api-openapi.yml",
+    "discgolfapi-updates-api-openapi.yml"
+  ],
+  "outputs": [
+    "discgolfapi-countries-api-openapi.yml",
+    "discgolfapi-courses-api-openapi.yml",
+    "discgolfapi-metadata-api-openapi.yml",
+    "discgolfapi-regions-api-openapi.yml",
+    "discgolfapi-updates-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
