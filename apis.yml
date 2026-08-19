@@ -29,7 +29,7 @@ tags:
 url: https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/apis.yml
 created: '2026-05-03'
 modified: '2026-05-19'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: discgolfapi:discgolfapi-countries-api
   name: DiscGolfAPI Countries API
