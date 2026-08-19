@@ -1,0 +1,176 @@
+{
+  "item": [
+    {
+      "id": "a2eef78a-86fe-459d-aa7d-2598ee251df2",
+      "name": "Updates",
+      "description": {
+        "content": "Recent public data updates.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ebc9226a-f01c-420e-bd65-0211dc7c3573",
+          "name": "List Recent Updates",
+          "request": {
+            "name": "List Recent Updates",
+            "description": {
+              "content": "Returns recent course additions or changes in the public dataset.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "updates",
+                "recent"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "787f2278-2ca0-45b6-99df-25db74f591c4",
+              "name": "A recent updates response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "updates",
+                    "recent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"attribution\": \"string\",\n  \"attribution_required\": false,\n  \"generated_at\": \"1972-11-27T02:54:21.214Z\",\n  \"license\": \"string\",\n  \"license_url\": \"https://xYrqAxM.nxelwW2GeyY1X,r,ysyAKZQLZ6eh+Hrz,8gz1WDoJ-7KMsUkyhYpVlSIqieXhs\",\n  \"no_warranty\": \"string\",\n  \"schema_version\": \"string\",\n  \"terms_url\": \"http://ZSAbwbskzdmbUIz.yyciT,Ru3kBfzw+x,kHCGH7w4LTwkd9PfG.GiVar4n9pJxAClJdQdYXsNZ3UITFCIcMvi\",\n  \"updates\": [\n    {\n      \"course_id\": \"string\",\n      \"course_slug\": \"string\",\n      \"course_name\": \"string\",\n      \"change_type\": \"string\",\n      \"updated_at\": \"2018-11-24T09:25:48.140Z\"\n    },\n    {\n      \"course_id\": \"string\",\n      \"course_slug\": \"string\",\n      \"course_name\": \"string\",\n      \"change_type\": \"string\",\n      \"updated_at\": \"1955-04-24T06:19:30.960Z\"\n    }\n  ],\n  \"meta\": {\n    \"publish_version\": \"string\",\n    \"release_scope\": \"string\",\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2510bc8e-92c8-48e9-8d74-44926cc10467",
+              "name": "Too many requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "updates",
+                    "recent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a68a4fd-8966-4770-ba10-8c44d0d909b0",
+              "name": "Temporary server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "updates",
+                    "recent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://io.discgolfapi.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a44d3248-86bb-4e15-ab81-12935bdcf761",
+    "name": "DiscGolf Countries Updates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "DiscGolfAPI is a read-only API for structured disc golf course data. It provides stable course records, location fields, country and region indexes, update metadata, confidence signals and attribution information for developer projects, maps, directories, websites and AI systems.\n\nContact Support:\n Name: DiscGolfAPI",
+      "type": "text/plain"
+    }
+  }
+}

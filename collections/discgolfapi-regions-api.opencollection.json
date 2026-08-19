@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "DiscGolf Countries Regions API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Regions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Regions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://io.discgolfapi.com/v1/regions"
+          },
+          "docs": "Returns regions, states and subdivisions represented in the current public dataset where region codes are available."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

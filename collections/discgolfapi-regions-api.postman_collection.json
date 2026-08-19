@@ -1,0 +1,172 @@
+{
+  "item": [
+    {
+      "id": "7ed95971-dc4c-4037-91c7-c724e2d25214",
+      "name": "Regions",
+      "description": {
+        "content": "Region, state and subdivision coverage index.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "621ddcfd-40dd-441f-84bc-60edda11efe7",
+          "name": "List Regions",
+          "request": {
+            "name": "List Regions",
+            "description": {
+              "content": "Returns regions, states and subdivisions represented in the current public dataset where region codes are available.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "regions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0cbfe542-77f9-4651-87c9-dd567e3cd6e4",
+              "name": "A region coverage response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "regions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"attribution\": \"string\",\n  \"attribution_required\": false,\n  \"generated_at\": \"2010-10-29T22:40:36.537Z\",\n  \"license\": \"string\",\n  \"license_url\": \"http://mIRvc.pqjrGy9iB4sjayH0Ynko-VC8aQg\",\n  \"no_warranty\": \"string\",\n  \"regions\": [\n    {\n      \"country_code\": \"string\",\n      \"region_code\": \"string\",\n      \"region_name\": \"string\",\n      \"course_count\": 7498,\n      \"updated_at\": \"2017-01-04T20:31:56.339Z\"\n    },\n    {\n      \"country_code\": \"string\",\n      \"region_code\": \"string\",\n      \"region_name\": \"string\",\n      \"course_count\": 1530,\n      \"updated_at\": \"1981-05-25T01:44:53.606Z\"\n    }\n  ],\n  \"schema_version\": \"string\",\n  \"terms_url\": \"http://zEQSWAYBHSrMcPPGUlRxIWKqOYmZm.vpctZRTXOu0Bd-+EMmS5HmZsgTj48eA8b7M2\",\n  \"meta\": {\n    \"publish_version\": \"string\",\n    \"release_scope\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3dd2c766-b2fa-43bd-9b92-098d64864fcc",
+              "name": "Too many requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "regions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25ef9f4a-0253-4cde-a238-e341416e1aaa",
+              "name": "Temporary server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "regions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://io.discgolfapi.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "47755ab0-851d-4366-b2b0-8a3c97698726",
+    "name": "DiscGolf Countries Regions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "DiscGolfAPI is a read-only API for structured disc golf course data. It provides stable course records, location fields, country and region indexes, update metadata, confidence signals and attribution information for developer projects, maps, directories, websites and AI systems.\n\nContact Support:\n Name: DiscGolfAPI",
+      "type": "text/plain"
+    }
+  }
+}

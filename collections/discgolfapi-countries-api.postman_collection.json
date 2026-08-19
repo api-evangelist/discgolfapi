@@ -1,0 +1,172 @@
+{
+  "item": [
+    {
+      "id": "90db6108-477a-495c-a7b8-a22378dd0843",
+      "name": "Countries",
+      "description": {
+        "content": "Country coverage index.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "36b252bc-fee4-490f-b892-5086c8d9778a",
+          "name": "List Countries",
+          "request": {
+            "name": "List Countries",
+            "description": {
+              "content": "Returns countries represented in the current public dataset.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "countries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e8ec6782-0476-49f9-ab4b-74903734205e",
+              "name": "A country coverage response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "countries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"attribution\": \"string\",\n  \"attribution_required\": true,\n  \"countries\": [\n    {\n      \"country_code\": \"string\",\n      \"country_name\": \"string\",\n      \"course_count\": 4786,\n      \"updated_at\": \"1978-07-31T12:23:42.577Z\"\n    },\n    {\n      \"country_code\": \"string\",\n      \"country_name\": \"string\",\n      \"course_count\": 4693,\n      \"updated_at\": \"2003-05-14T15:19:25.504Z\"\n    }\n  ],\n  \"generated_at\": \"2013-06-15T12:57:52.424Z\",\n  \"license\": \"string\",\n  \"license_url\": \"http://CSGzsFgEeaxknOYvDvHXWSyGqqimImW.wjmLddBK04lEq6GOLpT6BE1aAirAIZJtg,oTqkIYyZvQBmLbZAr+TU.eokSCgrFB-o\",\n  \"no_warranty\": \"string\",\n  \"schema_version\": \"string\",\n  \"terms_url\": \"https://MiVYyHBhWwvryQoWmfcsRi.nqcwO\",\n  \"meta\": {\n    \"publish_version\": \"string\",\n    \"release_scope\": \"string\",\n    \"key_0\": false,\n    \"key_1\": false,\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6f369d5-b412-49b9-a9ca-c1df9b275424",
+              "name": "Too many requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "countries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01706d24-85ea-4156-b3c3-fb2a5e7d502d",
+              "name": "Temporary server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "countries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://io.discgolfapi.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "33acec51-fad3-434d-a393-ccaff4559dc8",
+    "name": "DiscGolf Countries API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "DiscGolfAPI is a read-only API for structured disc golf course data. It provides stable course records, location fields, country and region indexes, update metadata, confidence signals and attribution information for developer projects, maps, directories, websites and AI systems.\n\nContact Support:\n Name: DiscGolfAPI",
+      "type": "text/plain"
+    }
+  }
+}

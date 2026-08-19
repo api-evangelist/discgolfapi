@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "DiscGolf Countries Metadata API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Dataset Manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://io.discgolfapi.com/v1/manifest.json"
+          },
+          "docs": "Returns the current public dataset manifest, including contract version, publish version, generated timestamp, dataset counts and published JSON artefact metadata."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "DiscGolf Countries Updates API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Updates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Recent Updates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://io.discgolfapi.com/v1/updates/recent"
+          },
+          "docs": "Returns recent course additions or changes in the public dataset."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
