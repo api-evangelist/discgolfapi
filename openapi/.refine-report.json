@@ -1,11 +1,7 @@
 {
   "provider": "discgolfapi",
   "sources": [
-    "discgolfapi-countries-api-openapi.yml",
-    "discgolfapi-courses-api-openapi.yml",
-    "discgolfapi-metadata-api-openapi.yml",
-    "discgolfapi-regions-api-openapi.yml",
-    "discgolfapi-updates-api-openapi.yml"
+    "_original/discgolfapi-openapi.yml"
   ],
   "outputs": [
     "discgolfapi-countries-api-openapi.yml",
@@ -17,6 +13,16 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "discgolfapi-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "discgolfapi-countries-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "discgolfapi-courses-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "discgolfapi-metadata-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "discgolfapi-regions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "discgolfapi-updates-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: DiscGolf Countries API
   version: 1.0.0
@@ -36,6 +36,19 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
+  responses:
+    ServerError:
+      description: Temporary server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: Too many requests.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
     ErrorResponse:
       type: object
@@ -45,39 +58,6 @@ components:
       required:
       - error
       additionalProperties: true
-    CommonEnvelope:
-      type: object
-      properties:
-        schema_version:
-          type: string
-        generated_at:
-          type: string
-          format: date-time
-        attribution:
-          type: string
-        attribution_required:
-          type: boolean
-        license:
-          type: string
-        license_url:
-          type: string
-          format: uri
-        terms_url:
-          type: string
-          format: uri
-        no_warranty:
-          type: string
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-      required:
-      - schema_version
-      - generated_at
-      - attribution
-      - attribution_required
-      - license
-      - license_url
-      - terms_url
-      - no_warranty
     Country:
       type: object
       properties:
@@ -115,19 +95,39 @@ components:
         release_scope:
           type: string
       additionalProperties: true
-  responses:
-    ServerError:
-      description: Temporary server error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    TooManyRequests:
-      description: Too many requests.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+    CommonEnvelope:
+      type: object
+      properties:
+        schema_version:
+          type: string
+        generated_at:
+          type: string
+          format: date-time
+        attribution:
+          type: string
+        attribution_required:
+          type: boolean
+        license:
+          type: string
+        license_url:
+          type: string
+          format: uri
+        terms_url:
+          type: string
+          format: uri
+        no_warranty:
+          type: string
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+      required:
+      - schema_version
+      - generated_at
+      - attribution
+      - attribution_required
+      - license
+      - license_url
+      - terms_url
+      - no_warranty
 externalDocs:
   description: DiscGolfAPI documentation
   url: https://discgolfapi.com/docs/

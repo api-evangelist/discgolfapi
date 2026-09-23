@@ -1,0 +1,26 @@
+# Front Door AI Index — discgolfapi — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: discgolfapi
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: discgolfapi.com
+  final_host: discgolfapi.com
+  ownership: own
+  owner: discgolfapi
+  shares_host_with:
+  - discgolf
+  inherited_from: null
+  verdict: scored
+  score: 2
+  host_score: 2
+  density: 2.98
+  words: 672
+  tiers:
+    agentic: 0
+    core: 2
+    model: 0
+  ambiguous: 0
+  top_terms:
+    AI: 2

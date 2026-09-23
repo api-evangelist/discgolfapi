@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: DiscGolf Countries Regions API
+  title: DiscGolf Regions API
   version: 1.0.0
   description: DiscGolfAPI is a read-only API for structured disc golf course data. It provides stable course records, location fields, country and region indexes, update metadata, confidence signals and attribution information for developer projects, maps, directories, websites and AI systems.
   termsOfService: https://discgolfapi.com/terms/
@@ -36,7 +36,39 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
+  responses:
+    ServerError:
+      description: Temporary server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: Too many requests.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    RegionsResponse:
+      allOf:
+      - $ref: '#/components/schemas/CommonEnvelope'
+      - type: object
+        properties:
+          regions:
+            type: array
+            items:
+              $ref: '#/components/schemas/Region'
+        required:
+        - regions
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+      - error
+      additionalProperties: true
     Region:
       type: object
       properties:
@@ -58,6 +90,14 @@ components:
       - region_name
       - course_count
       - updated_at
+    ResponseMeta:
+      type: object
+      properties:
+        publish_version:
+          type: string
+        release_scope:
+          type: string
+      additionalProperties: true
     CommonEnvelope:
       type: object
       properties:
@@ -91,46 +131,6 @@ components:
       - license_url
       - terms_url
       - no_warranty
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-      required:
-      - error
-      additionalProperties: true
-    RegionsResponse:
-      allOf:
-      - $ref: '#/components/schemas/CommonEnvelope'
-      - type: object
-        properties:
-          regions:
-            type: array
-            items:
-              $ref: '#/components/schemas/Region'
-        required:
-        - regions
-    ResponseMeta:
-      type: object
-      properties:
-        publish_version:
-          type: string
-        release_scope:
-          type: string
-      additionalProperties: true
-  responses:
-    ServerError:
-      description: Temporary server error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    TooManyRequests:
-      description: Too many requests.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
 externalDocs:
   description: DiscGolfAPI documentation
   url: https://discgolfapi.com/docs/

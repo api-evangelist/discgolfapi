@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: DiscGolf Countries Updates API
+  title: DiscGolf Updates API
   version: 1.0.0
   description: DiscGolfAPI is a read-only API for structured disc golf course data. It provides stable course records, location fields, country and region indexes, update metadata, confidence signals and attribution information for developer projects, maps, directories, websites and AI systems.
   termsOfService: https://discgolfapi.com/terms/
@@ -36,7 +36,67 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
+  responses:
+    ServerError:
+      description: Temporary server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: Too many requests.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    RecentUpdate:
+      type: object
+      properties:
+        course_id:
+          type: string
+        course_slug:
+          type: string
+        course_name:
+          type: string
+        change_type:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - course_id
+      - course_slug
+      - course_name
+      - change_type
+      - updated_at
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+      - error
+      additionalProperties: true
+    RecentUpdatesResponse:
+      allOf:
+      - $ref: '#/components/schemas/CommonEnvelope'
+      - type: object
+        properties:
+          updates:
+            type: array
+            items:
+              $ref: '#/components/schemas/RecentUpdate'
+        required:
+        - updates
+    ResponseMeta:
+      type: object
+      properties:
+        publish_version:
+          type: string
+        release_scope:
+          type: string
+      additionalProperties: true
     CommonEnvelope:
       type: object
       properties:
@@ -70,66 +130,6 @@ components:
       - license_url
       - terms_url
       - no_warranty
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-      required:
-      - error
-      additionalProperties: true
-    RecentUpdate:
-      type: object
-      properties:
-        course_id:
-          type: string
-        course_slug:
-          type: string
-        course_name:
-          type: string
-        change_type:
-          type: string
-        updated_at:
-          type: string
-          format: date-time
-      required:
-      - course_id
-      - course_slug
-      - course_name
-      - change_type
-      - updated_at
-    RecentUpdatesResponse:
-      allOf:
-      - $ref: '#/components/schemas/CommonEnvelope'
-      - type: object
-        properties:
-          updates:
-            type: array
-            items:
-              $ref: '#/components/schemas/RecentUpdate'
-        required:
-        - updates
-    ResponseMeta:
-      type: object
-      properties:
-        publish_version:
-          type: string
-        release_scope:
-          type: string
-      additionalProperties: true
-  responses:
-    ServerError:
-      description: Temporary server error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    TooManyRequests:
-      description: Too many requests.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
 externalDocs:
   description: DiscGolfAPI documentation
   url: https://discgolfapi.com/docs/
