@@ -36,19 +36,6 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
-  responses:
-    ServerError:
-      description: Temporary server error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    TooManyRequests:
-      description: Too many requests.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
     RecentUpdate:
       type: object
@@ -70,25 +57,6 @@ components:
       - course_name
       - change_type
       - updated_at
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-      required:
-      - error
-      additionalProperties: true
-    RecentUpdatesResponse:
-      allOf:
-      - $ref: '#/components/schemas/CommonEnvelope'
-      - type: object
-        properties:
-          updates:
-            type: array
-            items:
-              $ref: '#/components/schemas/RecentUpdate'
-        required:
-        - updates
     ResponseMeta:
       type: object
       properties:
@@ -130,6 +98,38 @@ components:
       - license_url
       - terms_url
       - no_warranty
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+      - error
+      additionalProperties: true
+    RecentUpdatesResponse:
+      allOf:
+      - $ref: '#/components/schemas/CommonEnvelope'
+      - type: object
+        properties:
+          updates:
+            type: array
+            items:
+              $ref: '#/components/schemas/RecentUpdate'
+        required:
+        - updates
+  responses:
+    TooManyRequests:
+      description: Too many requests.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    ServerError:
+      description: Temporary server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
 externalDocs:
   description: DiscGolfAPI documentation
   url: https://discgolfapi.com/docs/

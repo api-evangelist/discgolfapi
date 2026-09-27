@@ -37,59 +37,19 @@ paths:
           $ref: '#/components/responses/ServerError'
 components:
   responses:
-    ServerError:
-      description: Temporary server error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     TooManyRequests:
       description: Too many requests.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    ServerError:
+      description: Temporary server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    RegionsResponse:
-      allOf:
-      - $ref: '#/components/schemas/CommonEnvelope'
-      - type: object
-        properties:
-          regions:
-            type: array
-            items:
-              $ref: '#/components/schemas/Region'
-        required:
-        - regions
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-      required:
-      - error
-      additionalProperties: true
-    Region:
-      type: object
-      properties:
-        country_code:
-          type: string
-        region_code:
-          type: string
-        region_name:
-          type: string
-        course_count:
-          type: integer
-          minimum: 0
-        updated_at:
-          type: string
-          format: date-time
-      required:
-      - country_code
-      - region_code
-      - region_name
-      - course_count
-      - updated_at
     ResponseMeta:
       type: object
       properties:
@@ -131,6 +91,46 @@ components:
       - license_url
       - terms_url
       - no_warranty
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+      - error
+      additionalProperties: true
+    Region:
+      type: object
+      properties:
+        country_code:
+          type: string
+        region_code:
+          type: string
+        region_name:
+          type: string
+        course_count:
+          type: integer
+          minimum: 0
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - country_code
+      - region_code
+      - region_name
+      - course_count
+      - updated_at
+    RegionsResponse:
+      allOf:
+      - $ref: '#/components/schemas/CommonEnvelope'
+      - type: object
+        properties:
+          regions:
+            type: array
+            items:
+              $ref: '#/components/schemas/Region'
+        required:
+        - regions
 externalDocs:
   description: DiscGolfAPI documentation
   url: https://discgolfapi.com/docs/
