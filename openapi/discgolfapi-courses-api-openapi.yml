@@ -117,43 +117,121 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            courseNotFound:
+              value:
+                error: Course not found
+    TooManyRequests:
+      description: Too many requests.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    ServerError:
+      description: Temporary server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    Country:
+      name: country
+      in: query
+      required: false
+      description: Country code filter.
+      schema:
+        type: string
+        minLength: 2
+        maxLength: 2
+        examples:
+        - GB
+    Offset:
+      name: offset
+      in: query
+      required: false
+      description: Number of matching records to skip before returning the current page.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+        examples:
+        - 0
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of records to return. Must be a positive integer.
+      schema:
+        type: integer
+        minimum: 1
+        examples:
+        - 5
+    CourseId:
+      name: id
+      in: path
+      required: true
+      description: Stable public course ID.
+      schema:
+        type: string
+        pattern: ^crs_[a-z0-9_]+$
+        examples:
+        - crs_ackers_adventure
+    Region:
+      name: region
+      in: query
+      required: false
+      description: Region, state or subdivision code filter where supported.
+      schema:
+        type: string
+        examples:
+        - ENG
   schemas:
-    PaginationMeta:
+    CommonEnvelope:
       type: object
       properties:
-        count:
-          type: integer
-          minimum: 0
-        total:
-          type: integer
-          minimum: 0
-        offset:
-          type: integer
-          minimum: 0
+        schema_version:
+          type: string
+        generated_at:
+          type: string
+          format: date-time
+        attribution:
+          type: string
+        attribution_required:
+          type: boolean
+        license:
+          type: string
+        license_url:
+          type: string
+          format: uri
+        terms_url:
+          type: string
+          format: uri
+        no_warranty:
+          type: string
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
       required:
-      - count
-    CourseResponse:
-      allOf:
-      - $ref: '#/components/schemas/CommonEnvelope'
-      - $ref: '#/components/schemas/PaginationMeta'
-      - type: object
-        properties:
-          courses:
-            type: array
-            minItems: 1
-            maxItems: 1
-            items:
-              $ref: '#/components/schemas/Course'
-        required:
-        - courses
-    ResponseMeta:
-      type: object
-      properties:
-        publish_version:
-          type: string
-        release_scope:
-          type: string
-      additionalProperties: true
+      - schema_version
+      - generated_at
+      - attribution
+      - attribution_required
+      - license
+      - license_url
+      - terms_url
+      - no_warranty
     PrimaryLayout:
       type: object
       properties:
@@ -199,39 +277,36 @@ components:
       - confidence_score
       - verification_strength
       - last_verified_at
-    CommonEnvelope:
+    ResponseMeta:
       type: object
       properties:
-        schema_version:
+        publish_version:
           type: string
-        generated_at:
+        release_scope:
           type: string
-          format: date-time
-        attribution:
-          type: string
-        attribution_required:
-          type: boolean
-        license:
-          type: string
-        license_url:
-          type: string
-          format: uri
-        terms_url:
-          type: string
-          format: uri
-        no_warranty:
-          type: string
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
+      additionalProperties: true
+    PaginationMeta:
+      type: object
+      properties:
+        count:
+          type: integer
+          minimum: 0
+        total:
+          type: integer
+          minimum: 0
+        offset:
+          type: integer
+          minimum: 0
       required:
-      - schema_version
-      - generated_at
-      - attribution
-      - attribution_required
-      - license
-      - license_url
-      - terms_url
-      - no_warranty
+      - count
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+      - error
+      additionalProperties: true
     CourseListResponse:
       allOf:
       - $ref: '#/components/schemas/CommonEnvelope'
@@ -240,6 +315,20 @@ components:
         properties:
           courses:
             type: array
+            items:
+              $ref: '#/components/schemas/Course'
+        required:
+        - courses
+    CourseResponse:
+      allOf:
+      - $ref: '#/components/schemas/CommonEnvelope'
+      - $ref: '#/components/schemas/PaginationMeta'
+      - type: object
+        properties:
+          courses:
+            type: array
+            minItems: 1
+            maxItems: 1
             items:
               $ref: '#/components/schemas/Course'
         required:
@@ -342,95 +431,6 @@ components:
       - updated_at
       - primary_layout
       - attributes
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-      required:
-      - error
-      additionalProperties: true
-  parameters:
-    CourseId:
-      name: id
-      in: path
-      required: true
-      description: Stable public course ID.
-      schema:
-        type: string
-        pattern: ^crs_[a-z0-9_]+$
-        examples:
-        - crs_ackers_adventure
-    Limit:
-      name: limit
-      in: query
-      required: false
-      description: Maximum number of records to return. Must be a positive integer.
-      schema:
-        type: integer
-        minimum: 1
-        examples:
-        - 5
-    Offset:
-      name: offset
-      in: query
-      required: false
-      description: Number of matching records to skip before returning the current page.
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-        examples:
-        - 0
-    Region:
-      name: region
-      in: query
-      required: false
-      description: Region, state or subdivision code filter where supported.
-      schema:
-        type: string
-        examples:
-        - ENG
-    Country:
-      name: country
-      in: query
-      required: false
-      description: Country code filter.
-      schema:
-        type: string
-        minLength: 2
-        maxLength: 2
-        examples:
-        - GB
-  responses:
-    TooManyRequests:
-      description: Too many requests.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid request.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          examples:
-            courseNotFound:
-              value:
-                error: Course not found
-    ServerError:
-      description: Temporary server error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
 externalDocs:
   description: DiscGolfAPI documentation
   url: https://discgolfapi.com/docs/

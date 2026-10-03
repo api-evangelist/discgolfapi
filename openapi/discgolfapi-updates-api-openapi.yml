@@ -57,14 +57,6 @@ components:
       - course_name
       - change_type
       - updated_at
-    ResponseMeta:
-      type: object
-      properties:
-        publish_version:
-          type: string
-        release_scope:
-          type: string
-      additionalProperties: true
     CommonEnvelope:
       type: object
       properties:
@@ -98,14 +90,6 @@ components:
       - license_url
       - terms_url
       - no_warranty
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-      required:
-      - error
-      additionalProperties: true
     RecentUpdatesResponse:
       allOf:
       - $ref: '#/components/schemas/CommonEnvelope'
@@ -117,6 +101,22 @@ components:
               $ref: '#/components/schemas/RecentUpdate'
         required:
         - updates
+    ResponseMeta:
+      type: object
+      properties:
+        publish_version:
+          type: string
+        release_scope:
+          type: string
+      additionalProperties: true
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+      - error
+      additionalProperties: true
   responses:
     TooManyRequests:
       description: Too many requests.

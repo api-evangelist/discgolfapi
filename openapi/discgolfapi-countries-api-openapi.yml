@@ -50,14 +50,6 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ResponseMeta:
-      type: object
-      properties:
-        publish_version:
-          type: string
-        release_scope:
-          type: string
-      additionalProperties: true
     CommonEnvelope:
       type: object
       properties:
@@ -91,6 +83,14 @@ components:
       - license_url
       - terms_url
       - no_warranty
+    ResponseMeta:
+      type: object
+      properties:
+        publish_version:
+          type: string
+        release_scope:
+          type: string
+      additionalProperties: true
     ErrorResponse:
       type: object
       properties:
