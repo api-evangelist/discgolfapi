@@ -36,27 +36,39 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
+  responses:
+    TooManyRequests:
+      description: Too many requests.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    ServerError:
+      description: Temporary server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    RecentUpdate:
+    ResponseMeta:
       type: object
       properties:
-        course_id:
+        publish_version:
           type: string
-        course_slug:
+        release_scope:
           type: string
-        course_name:
-          type: string
-        change_type:
-          type: string
-        updated_at:
-          type: string
-          format: date-time
-      required:
-      - course_id
-      - course_slug
-      - course_name
-      - change_type
-      - updated_at
+      additionalProperties: true
+    RecentUpdatesResponse:
+      allOf:
+      - $ref: '#/components/schemas/CommonEnvelope'
+      - type: object
+        properties:
+          updates:
+            type: array
+            items:
+              $ref: '#/components/schemas/RecentUpdate'
+        required:
+        - updates
     CommonEnvelope:
       type: object
       properties:
@@ -90,25 +102,26 @@ components:
       - license_url
       - terms_url
       - no_warranty
-    RecentUpdatesResponse:
-      allOf:
-      - $ref: '#/components/schemas/CommonEnvelope'
-      - type: object
-        properties:
-          updates:
-            type: array
-            items:
-              $ref: '#/components/schemas/RecentUpdate'
-        required:
-        - updates
-    ResponseMeta:
+    RecentUpdate:
       type: object
       properties:
-        publish_version:
+        course_id:
           type: string
-        release_scope:
+        course_slug:
           type: string
-      additionalProperties: true
+        course_name:
+          type: string
+        change_type:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - course_id
+      - course_slug
+      - course_name
+      - change_type
+      - updated_at
     ErrorResponse:
       type: object
       properties:
@@ -117,19 +130,6 @@ components:
       required:
       - error
       additionalProperties: true
-  responses:
-    TooManyRequests:
-      description: Too many requests.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    ServerError:
-      description: Temporary server error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
 externalDocs:
   description: DiscGolfAPI documentation
   url: https://discgolfapi.com/docs/
