@@ -1,0 +1,12 @@
+{
+ "url": "https://discgolfapi.com/openapi.json",
+ "requested_url": "https://discgolfapi.com/openapi.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 26679,
+ "sha256": "8b192d260beb5f4abd122163f68652ba87cb4d6cb250283984ff7f13276b945f",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
