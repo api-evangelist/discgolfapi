@@ -117,36 +117,15 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
-  responses:
-    TooManyRequests:
-      description: Too many requests.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid request.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    ServerError:
-      description: Temporary server error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          examples:
-            courseNotFound:
-              value:
-                error: Course not found
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+      - error
+      additionalProperties: true
     CourseResponse:
       allOf:
       - $ref: '#/components/schemas/CommonEnvelope'
@@ -161,71 +140,39 @@ components:
               $ref: '#/components/schemas/Course'
         required:
         - courses
-    ResponseMeta:
+    CommonEnvelope:
       type: object
       properties:
-        publish_version:
+        schema_version:
           type: string
-        release_scope:
+        generated_at:
           type: string
-      additionalProperties: true
-    CourseListResponse:
-      allOf:
-      - $ref: '#/components/schemas/CommonEnvelope'
-      - $ref: '#/components/schemas/PaginationMeta'
-      - type: object
-        properties:
-          courses:
-            type: array
-            items:
-              $ref: '#/components/schemas/Course'
-        required:
-        - courses
-    PrimaryLayout:
-      type: object
-      properties:
-        id:
-          type: string
-        slug:
-          type: string
-        name:
-          type: string
-        holes:
-          type:
-          - integer
-          - 'null'
-          minimum: 1
-        par_total:
-          type:
-          - integer
-          - 'null'
-          minimum: 1
-        length_meters:
-          type:
-          - number
-          - 'null'
-          minimum: 0
-        confidence_score:
-          type: number
-          minimum: 0
-          maximum: 1
-        verification_strength:
-          type: string
-        last_verified_at:
-          type:
-          - string
-          - 'null'
           format: date-time
+        attribution:
+          type: string
+        attribution_required:
+          type: boolean
+        license:
+          type: string
+        license_url:
+          type: string
+          format: uri
+        terms_url:
+          type: string
+          format: uri
+        no_warranty:
+          type: string
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
       required:
-      - id
-      - slug
-      - name
-      - holes
-      - par_total
-      - length_meters
-      - confidence_score
-      - verification_strength
-      - last_verified_at
+      - schema_version
+      - generated_at
+      - attribution
+      - attribution_required
+      - license
+      - license_url
+      - terms_url
+      - no_warranty
     PaginationMeta:
       type: object
       properties:
@@ -240,6 +187,14 @@ components:
           minimum: 0
       required:
       - count
+    ResponseMeta:
+      type: object
+      properties:
+        publish_version:
+          type: string
+        release_scope:
+          type: string
+      additionalProperties: true
     Course:
       type: object
       properties:
@@ -338,48 +293,75 @@ components:
       - updated_at
       - primary_layout
       - attributes
-    CommonEnvelope:
+    CourseListResponse:
+      allOf:
+      - $ref: '#/components/schemas/CommonEnvelope'
+      - $ref: '#/components/schemas/PaginationMeta'
+      - type: object
+        properties:
+          courses:
+            type: array
+            items:
+              $ref: '#/components/schemas/Course'
+        required:
+        - courses
+    PrimaryLayout:
       type: object
       properties:
-        schema_version:
+        id:
           type: string
-        generated_at:
+        slug:
           type: string
+        name:
+          type: string
+        holes:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+        par_total:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+        length_meters:
+          type:
+          - number
+          - 'null'
+          minimum: 0
+        confidence_score:
+          type: number
+          minimum: 0
+          maximum: 1
+        verification_strength:
+          type: string
+        last_verified_at:
+          type:
+          - string
+          - 'null'
           format: date-time
-        attribution:
-          type: string
-        attribution_required:
-          type: boolean
-        license:
-          type: string
-        license_url:
-          type: string
-          format: uri
-        terms_url:
-          type: string
-          format: uri
-        no_warranty:
-          type: string
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
       required:
-      - schema_version
-      - generated_at
-      - attribution
-      - attribution_required
-      - license
-      - license_url
-      - terms_url
-      - no_warranty
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-      required:
-      - error
-      additionalProperties: true
+      - id
+      - slug
+      - name
+      - holes
+      - par_total
+      - length_meters
+      - confidence_score
+      - verification_strength
+      - last_verified_at
   parameters:
+    Offset:
+      name: offset
+      in: query
+      required: false
+      description: Number of matching records to skip before returning the current page.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+        examples:
+        - 0
     CourseId:
       name: id
       in: path
@@ -399,17 +381,16 @@ components:
         type: string
         examples:
         - ENG
-    Offset:
-      name: offset
+    Limit:
+      name: limit
       in: query
       required: false
-      description: Number of matching records to skip before returning the current page.
+      description: Maximum number of records to return. Must be a positive integer.
       schema:
         type: integer
-        minimum: 0
-        default: 0
+        minimum: 1
         examples:
-        - 0
+        - 5
     Country:
       name: country
       in: query
@@ -421,16 +402,35 @@ components:
         maxLength: 2
         examples:
         - GB
-    Limit:
-      name: limit
-      in: query
-      required: false
-      description: Maximum number of records to return. Must be a positive integer.
-      schema:
-        type: integer
-        minimum: 1
-        examples:
-        - 5
+  responses:
+    ServerError:
+      description: Temporary server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: Too many requests.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            courseNotFound:
+              value:
+                error: Course not found
 externalDocs:
   description: DiscGolfAPI documentation
   url: https://discgolfapi.com/docs/
