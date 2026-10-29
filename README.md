@@ -1,4 +1,4 @@
-# DiscGolfAPI (discgolfapi)
+# DiscGolfAPI
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,88 +66,164 @@
 
 DiscGolfAPI is a free, read-only public API that publishes structured JSON data about disc golf courses for developers, clubs, publishers, apps, and AI systems. It provides machine-readable course records with names, locations, countries, regions, hole counts where known, coordinates where available, operational and access fields, confidence and verification signals, update timestamps, and attribution/licence metadata. DiscGolfAPI is infrastructure and reference data — not a review site, rating platform, or social network.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/apis.yml)
+**Areas:** Disc Golf · Sports · Courses · Open Data · Recreation
 
-## Scope
+## DiscGolfAPI on APIs.io
 
-- **Type:** Index
+Everything profiled for DiscGolfAPI is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/discgolfapi/](https://apis.io/providers/discgolfapi/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (5)
 
-- Disc Golf
-- Sports
-- Courses
-- Open Data
-- Recreation
+- [DiscGolfAPI Countries API](https://apis.io/apis/discgolfapi/discgolfapi-countries-api/) — Country coverage index.
+- [DiscGolfAPI Courses API](https://apis.io/apis/discgolfapi/discgolfapi-courses-api/) — Course list and course detail endpoints.
+- [DiscGolfAPI Metadata API](https://apis.io/apis/discgolfapi/discgolfapi-metadata-api/) — Dataset manifest and publication metadata.
+- [DiscGolfAPI Regions API](https://apis.io/apis/discgolfapi/discgolfapi-regions-api/) — Region, state and subdivision coverage index.
+- [DiscGolfAPI Updates API](https://apis.io/apis/discgolfapi/discgolfapi-updates-api/) — Recent public data updates.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-03
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### DiscGolfAPI REST API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Read-only structured disc golf course data for apps, maps, directories, websites, and developer tools. Provides course listings filtered by country and region with pagination, course detail by stable public ID, country and region coverage indexes, recent update feed, and the public dataset manifest with content-addressable artefacts. Public endpoints do not require an API key. Use is subject to the DiscGolfAPI licence which requires visible attribution.
+- [Discgolfapi Agentic Access](https://apis.io/agentic-access/discgolfapi/discgolfapi-agentic-access/)
 
-- **Human URL:** [https://discgolfapi.com/](https://discgolfapi.com/)
-- **Base URL:** `https://io.discgolfapi.com/v1`
+#### JSON Schema (2)
 
-#### Tags
+The data models the API reads and writes.
 
-- Courses
-- Countries
-- Regions
-- Updates
-- Metadata
-- Disc Golf
-- Open Data
+- [DiscGolfAPI Course](https://apis.io/schemas/discgolfapi/discgolfapi-course/)
+- [DiscGolfAPI Manifest](https://apis.io/schemas/discgolfapi/discgolfapi-manifest/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://discgolfapi.com/docs/)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/openapi/discgolfapi-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [OpenAPI](https://discgolfapi.com/openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [A P Is J S O N](https://discgolfapi.com/apis.json)
-- [Terms of Service](https://discgolfapi.com/terms/)
-- [License](https://discgolfapi.com/licence/)
-- [Contact](https://discgolfapi.com/contact/)
-- [L L Ms Txt](https://discgolfapi.com/llms.txt)
-- [Robots Txt](https://discgolfapi.com/robots.txt)
-- [Manifest](https://io.discgolfapi.com/manifest.json)
-- [Schema](https://discgolfapi.com/schema/)
-- [Coverage](https://discgolfapi.com/coverage/)
-- [Changelog](https://discgolfapi.com/changelog/)
-- [Spectral  Ruleset](https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/rules/discgolfapi-rules.yml)
-- [J S O N  Schema](https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/json-schema/discgolfapi-course-schema.json)
-- [J S O N  Schema](https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/json-schema/discgolfapi-manifest-schema.json)
-- [J S O N  Structure](https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/json-structure/discgolfapi-course-structure.json)
-- [J S O N- L D  Context](https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/json-ld/discgolfapi-context.jsonld)
-- [Vocabulary](https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/vocabulary/discgolfapi-vocabulary.yml)
-- [Plans](https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/plans/discgolfapi-plans-pricing.yml)
-- [Rate Limits](https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/rate-limits/discgolfapi-rate-limits.yml)
-- [Fin Ops](https://raw.githubusercontent.com/api-evangelist/discgolfapi/refs/heads/main/finops/discgolfapi-finops.yml)
-- [Postman Collection](collections/discgolfapi.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/discgolfapi.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Discgolfapi Course Structure](https://apis.io/json-structure/discgolfapi/discgolfapi-course-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Discgolfapi Context](https://apis.io/jsonld/discgolfapi/discgolfapi-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [DiscGolfAPI Vocabulary](https://apis.io/vocabularies/discgolfapi/discgolfapi-vocabulary/)
+
+#### Examples (3)
+
+Example requests and responses.
+
+- [Discgolfapi Get Course Example](https://apis.io/examples/discgolfapi/discgolfapi-get-course-example/)
+- [Discgolfapi List Courses Example](https://apis.io/examples/discgolfapi/discgolfapi-list-courses-example/)
+- [Discgolfapi Manifest Example](https://apis.io/examples/discgolfapi/discgolfapi-manifest-example/)
+
+#### Collections (6)
+
+Postman and Open Collection request collections.
+
+- [DiscGolfAPI](https://apis.io/collections/discgolfapi/open-discgolfapi/)
+- [DiscGolf Countries API](https://apis.io/collections/discgolfapi/open-discgolfapi-countries-api/)
+- [DiscGolf Countries Courses API](https://apis.io/collections/discgolfapi/open-discgolfapi-courses-api/)
+- [DiscGolf Countries Metadata API](https://apis.io/collections/discgolfapi/open-discgolfapi-metadata-api/)
+- [DiscGolf Countries Regions API](https://apis.io/collections/discgolfapi/open-discgolfapi-regions-api/)
+- [DiscGolf Countries Updates API](https://apis.io/collections/discgolfapi/open-discgolfapi-updates-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [DiscGolfAPI — jsonschema rules](https://apis.io/rules/discgolfapi/discgolfapi-jsonschema-spectral-rules/)
+- [DiscGolfAPI API Rules](https://apis.io/rules/discgolfapi/discgolfapi-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Discgolfapi Domain Security](https://apis.io/security/discgolfapi/discgolfapi-domain-security/)
+- [Discgolfapi Vulnerability Disclosure](https://apis.io/security/discgolfapi/discgolfapi-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Discgolfapi Plans Pricing](https://apis.io/plans/discgolfapi/discgolfapi-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Discgolfapi Rate Limits](https://apis.io/rate-limits/discgolfapi/discgolfapi-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Discgolfapi Finops](https://apis.io/finops/discgolfapi/discgolfapi-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://discgolfapi.com/)
 - [Documentation](https://discgolfapi.com/docs/)
-- [A P Is J S O N](https://discgolfapi.com/apis.json)
-- [OpenAPI](https://discgolfapi.com/openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Terms of Service](https://discgolfapi.com/terms/)
-- [License](https://discgolfapi.com/licence/)
-- [Contact](https://discgolfapi.com/contact/)
-- [L L Ms Txt](https://discgolfapi.com/llms.txt)
-- [Robots Txt](https://discgolfapi.com/robots.txt)
-- [Schema](https://discgolfapi.com/schema/)
-- [Coverage](https://discgolfapi.com/coverage/)
 - [Changelog](https://discgolfapi.com/changelog/)
-- [Use  Our  Data](https://discgolfapi.com/use-our-data/)
+- [Terms of service](https://discgolfapi.com/terms/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** DiscGolfAPI
-**URL:** https://discgolfapi.com/contact/
+**Kin Score 34.1** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 67.9 |
+| Contract quality | 60.4 |
+| Contract governance | 27.3 |
+| Operational transparency | 21.1 |
+| Developer ergonomics | 9.5 |
+| Access clarity | 15.8 |
+
+**Agent readiness 22.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 20.6** — Government & Public Sector
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/discgolfapi/](https://apis.io/providers/discgolfapi/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for DiscGolfAPI: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/discgolfapi/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
